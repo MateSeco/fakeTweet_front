@@ -1,0 +1,348 @@
+.body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* 
+
+
+
+NAVBAR 
+
+*/
+
+nav ul {
+  margin-left: auto;
+  padding-right: 1.5rem;
+}
+
+nav li a {
+  font-size: 1.5rem;
+}
+nav .twitter {
+  padding-left: 1.5rem;
+}
+
+.fakeTwitter {
+  font-size: 1rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgba(226, 230, 255, 0.69);
+}
+.fakeTwitter-welcome {
+  font-size: 1rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #1c1f31b0;
+}
+
+.twitter {
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1c1f31;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.welcome100-form-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 30px;
+  color: #1c1f31;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+/* HOME */
+
+/* 
+
+FORM DEL TWEET 
+
+*/
+
+.redactTweet {
+  margin-bottom: 5rem;
+}
+
+.feedContainer {
+  min-height: 100vh;
+}
+
+.tweetButton {
+  margin-right: 0.5rem;
+  display: flex;
+  float: right;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+/* .saveButton {
+  width: 5rem;
+} */
+
+.profileImageTweet {
+  height: 3rem;
+  width: 3rem;
+  object-fit: cover;
+}
+
+.heart {
+  margin-left: 1.5rem;
+}
+
+.tweetInfo {
+  display: flex;
+  float: right;
+  font-size: 0.8rem;
+}
+
+.tweetFont {
+  overflow-wrap: break-word;
+  font-size: 1.2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  word-break: break-all;
+}
+
+/* 
+
+PERFIL
+
+*/
+
+.profileImage {
+  margin-bottom: 1rem;
+  height: 8rem;
+  width: 8rem;
+  object-fit: cover;
+}
+
+.following {
+  margin-left: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(49, 49, 49);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.links {
+  font-size: 1.3rem;
+}
+
+/* Follows */
+
+.follow h2 {
+  text-align: center;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.delete i {
+  font-size: 1rem;
+}
+/* Ya venía de antes */
+
+.grey {
+  background: #f2f2f2;
+  padding-bottom: 100px;
+}
+
+.center {
+  max-width: 700px;
+}
+
+.nuevoUsuarioTitle {
+  background: #f2f2f2;
+  padding: 10px;
+  border: 1px solid rgb(228, 219, 202);
+  margin: 0;
+}
+
+.title {
+  font-size: 40px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+.card {
+  border: none;
+}
+
+nav {
+  margin: 0;
+}
+
+.navbar-brand {
+  font-size: 35px;
+}
+
+.jumbotron {
+  padding-top: 200px;
+}
+
+.nav-item {
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+.block {
+  text-align: center;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 25px;
+  background: #004;
+  color: white;
+  text-decoration: none;
+}
+
+.articles {
+  margin-top: 60px;
+}
+
+.menu {
+  /* position: fixed; */
+  margin-top: 80px;
+}
+
+.menu a {
+  text-align: center;
+  display: block;
+  font-size: 25px;
+  margin-bottom: 15px;
+  color: #004;
+  text-decoration: none;
+}
+
+.form-group {
+  border: 1px solid rgb(228, 219, 202);
+  padding: 10px;
+}
+
+.close-article {
+  position: fixed;
+  z-index: 1000;
+}
+
+.center-y {
+  margin-top: 60px;
+}
+
+.text {
+  font-weight: 100;
+}
+
+.content-text {
+  text-align: justify;
+}
+
+.article {
+  background: #ffffff;
+  margin: 20px;
+}
+
+.label-item {
+  width: 500px;
+  color: black;
+}
+
+.label-item a {
+  text-decoration: none;
+  color: black;
+  font-size: 19px;
+}
+
+.dropdown-color {
+  padding: 10px 50px;
+}
+
+.form-group {
+  border: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  height: 15%;
+}
+
+.botones {
+  margin: 20px auto;
+}
+
+.close {
+  background: #aaaaaa;
+  float: right;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.principal-box {
+  padding-top: 300px;
+  padding-bottom: 300px;
+}
+
+.title-home {
+  color: white;
+  font-size: 60px;
+  margin-bottom: 40px;
+}
+
+.subtitle-home {
+  color: white;
+  font-size: 30px;
+  max-width: 60%;
+  font-weight: 300;
+}
+
+.cancelar {
+  background: #004;
+}
+
+/* .background {
+  background: lightblue url("/css/bg.jpg") no-repeat fixed center;
+}
+ */
+.home {
+  opacity: 0.9;
+  background: #ed4264; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ed4264,
+    #ffedbc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ed4264, #ffedbc);
+}
+
+.btn-admin {
+  width: 100%;
+}
