@@ -15,7 +15,6 @@ function Login() {
     const user = { email: email, password: password };
     console.log(user);
     axios.post("http://localhost:8000/login", user).then((res) => {
-      console.log(res);
       dispatch(actions.logged(res.data));
       history.push("/home");
     });

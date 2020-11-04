@@ -4,15 +4,15 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 function Home() {
-  const AUTH_TOKEN = useSelector((state) => state.token);
+  const token = useSelector((state) => state.token);
 
-  axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/home")
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  axios
+      .get(`http://localhost:8000/home`, {headers: {'Authorization':`Bearer ${token}`}},)
+      .then((res) => res.data)
+      .catch((err) => console.log("err",err));
   }, []);
+  
 
   return (
     <div className="homeBody">
