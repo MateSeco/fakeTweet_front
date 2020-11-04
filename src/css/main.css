@@ -39,11 +39,11 @@
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
-* {
+/* * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-}
+} */
 
 body,
 html {
@@ -211,7 +211,7 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -242,10 +242,17 @@ iframe {
   height: 100%;
   top: 0;
   left: 0;
-  /* background-image: url("../images/img-01.png"); */
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.wrap-welcome100 {
+  width: 450px;
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .wrap-login100 {
@@ -584,6 +591,13 @@ iframe {
 
 @media (max-width: 480px) {
   .wrap-login100 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap-welcome100 {
     padding-left: 15px;
     padding-right: 15px;
   }

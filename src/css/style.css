@@ -33,6 +33,10 @@ nav .twitter {
   color: #1c1f31b0;
 }
 
+#collasible-nav-dropdown {
+  font-size: 1.5rem;
+}
+
 .twitter {
   font-weight: 500;
   line-height: 1.2;
@@ -58,6 +62,10 @@ nav .twitter {
 
 /* HOME */
 
+.homeBody {
+  background-color: rgb(234, 242, 255);
+}
+
 /* 
 
 FORM DEL TWEET 
@@ -70,6 +78,7 @@ FORM DEL TWEET
 
 .feedContainer {
   min-height: 100vh;
+  background-color: rgb(255, 255, 255);
 }
 
 .tweetButton {
@@ -149,6 +158,12 @@ a {
 
 .delete i {
   font-size: 1rem;
+}
+
+/* LOGIN */
+
+.welcomeLinkStyle {
+  color: white;
 }
 /* Ya venía de antes */
 
