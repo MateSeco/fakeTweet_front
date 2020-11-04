@@ -12,7 +12,7 @@ function Login() {
     let password = document.getElementById("password").value;
     const user = { email: email, password: password };
     console.log(user);
-    axios.post(process.env.URL + "/login", user).then((res) => {
+    axios.post("http://localhost:8000/login", user).then((res) => {
       console.log(res);
       dispatch(actions.logged(res.data));
     });
