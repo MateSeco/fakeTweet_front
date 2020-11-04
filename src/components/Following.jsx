@@ -15,9 +15,8 @@ function Following() {
               <hr />
               <div className="media mt-5 mb-5">
                 <img
-                  src="<%- user.image %>"
+                  src="user.image"
                   className="mr-3 rounded-circle profileImageTweet"
-                  alt="..."
                 />
                 <div className="media-body">
                   <h5 className="mt-0">

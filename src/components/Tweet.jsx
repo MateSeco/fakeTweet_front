@@ -6,7 +6,7 @@ function Tweet() {
     <div className="container">
       <div className="media mt-4 mb-4">
         <img
-          src="<%- user.image %>"
+          src="user.image"
           className="mr-3 rounded-circle profileImageTweet"
           alt="..."
         />
