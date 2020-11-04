@@ -17,6 +17,7 @@ import Following from "./components/Following";
 import Followers from "./components/Followers";
 import Description from "./components/Description";
 import Tweet from "./components/Tweet";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -26,11 +27,11 @@ function App() {
           <Route exact path="/" component={Welcome} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/home" component={Home} />
+          <PrivateRoute path="/home" component={Home} />
           <Route path="/profile" component={Profile} />
-          <Route path="/following" component={Following} />
-          <Route path="/followers" component={Followers} />
-          <Route path="/description" component={Description} />
+          <PrivateRoute path="/following" component={Following} />
+          <PrivateRoute path="/followers" component={Followers} />
+          <PrivateRoute path="/description" component={Description} />
           <Route path="/tweet" component={Tweet} />
         </Switch>
       </div>

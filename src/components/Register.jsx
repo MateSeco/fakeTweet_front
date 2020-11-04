@@ -1,15 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import actions from "../redux/userActions";
 
 function Register() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  function axiosRegister() {
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let userName = document.getElementById("userName").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+      email: email,
+      password: password,
+    };
+    axios.post("http://localhost:8000/register", user).then((res) => {
+      dispatch(actions.logged(res.data));
+      history.push("/description");
+    });
+  }
+
   return (
     <div className="limiter">
       <div className="container-login100">
         <div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
           <form
             className="login100-form validate-form center"
-            action="/register"
-            method="POST"
             data-parsley-validate=""
           >
             <span className="login100-form-title p-b-55"> Registro </span>
@@ -123,7 +145,11 @@ function Register() {
             </span>
 
             <div className="container-login100-form-btn p-t-25">
-              <button className="login100-form-btn rounded-pill">
+              <button
+                type="button"
+                onClick={() => axiosRegister()}
+                className="login100-form-btn rounded-pill"
+              >
                 Registrarse
               </button>
             </div>

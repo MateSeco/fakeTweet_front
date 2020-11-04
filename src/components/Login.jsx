@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import actions from "../redux/userActions";
 
+import { Redirect } from "react-router-dom";
+
 function Login() {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   function axiosLogin() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
@@ -15,6 +17,7 @@ function Login() {
     axios.post("http://localhost:8000/login", user).then((res) => {
       console.log(res);
       dispatch(actions.logged(res.data));
+      history.push("/home");
     });
   }
 
