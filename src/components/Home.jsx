@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavComponent from "./NavComponent";
-import { Redirect, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 function Home() {
+  const AUTH_TOKEN = useSelector((state) => state.token);
+
+  axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/home")
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="homeBody">
       <NavComponent />

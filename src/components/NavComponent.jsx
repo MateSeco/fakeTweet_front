@@ -17,7 +17,7 @@ function NavComponent() {
             id="collasible-nav-dropdown"
             className="accountStyle"
           >
-            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+            <NavDropdown.Item href="/:username">Profile</NavDropdown.Item>
             <NavDropdown.Item href="/description">Settings</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="Logout">Logout</NavDropdown.Item>

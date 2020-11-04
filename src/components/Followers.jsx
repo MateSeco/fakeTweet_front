@@ -1,8 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import NavComponent from "./NavComponent";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 function Followers() {
+  let { username } = useParams();
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/${username}/followers`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="homeBody">
       <NavComponent />
