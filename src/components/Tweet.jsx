@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { reqGet } from "../utils/reqCalls";
 const moment = require("moment");
 const axios = require("axios");
 
@@ -10,10 +11,11 @@ function Tweet({ tweet, author }) {
   const [likes, setLikes] = useState(tweet.likes.length);
 
   function likeTweet(tweetId) {
-    axios
+    reqGet(`/like/${tweetId}`, token)
+    /* axios
       .get(`${process.env.REACT_APP_URL}/like/${tweetId}`, {
         headers: { Authorization: `Bearer ${token}` },
-      })
+      }) */
       .then((res) => setLikes(res.data.likes))
       .catch((err) => console.log("err", err));
   }

@@ -3,13 +3,18 @@ import NavComponent from "./NavComponent";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Tweet from "./Tweet";
+import {reqPost, reqGet} from "../utils/reqCalls"
 
 function Home() {
   const token = useSelector((state) => state.token);
   const [resData, setResData] = useState({ tweets: [] });
 
   useEffect(() => {
-    axios
+
+    reqGet("/home", token)
+    .then((res) => setResData({...resData, tweets: res.data.tweets,}))
+    .catch((err) => console.log("err", err))
+    /* axios
       .get(`${process.env.REACT_APP_URL}/home`, {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -20,22 +25,23 @@ function Home() {
           tweets: res.data.tweets,
         })
       )
-      .catch((err) => console.log("err", err));
+      .catch((err) => console.log("err", err)); */
   }, []);
 
-  function sendTweet() {
+ function sendTweet() {
     let content = document.getElementById("content").value;
     const tweet = { content: content };
-    axios
+    reqPost("/home", tweet, token).then(res => res);
+
+    /* axios
       .post(`${process.env.REACT_APP_URL}/home`, tweet, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         console.log(res);
-      });
+      }); */
   }
-
-  console.log(resData.tweets);
+ 
 
   return (
     <div className="homeBody">

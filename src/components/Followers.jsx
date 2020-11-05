@@ -3,17 +3,21 @@ import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {reqPost, reqGet} from "../utils/reqCalls"
 
 function Followers() {
   const token = useSelector((state) => state.token);
   let { username } = useParams();
   useEffect(() => {
-    axios
+  reqGet(`${username}/followers`, token)
+ .then((res) => console.log(res.data))
+ .catch((err) => console.log(err))
+    /* axios
       .get(`http://localhost:8000/${username}/followers`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); */
   }, []);
 
   return (
