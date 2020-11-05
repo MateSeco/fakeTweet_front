@@ -32,7 +32,7 @@ function Profile() {
     <div>
       <NavComponent />
       <div className="container">
-        <div className="shadow pr-5 pl-5 pb-5 feedContainer">
+        {resData.user && <div className="shadow pr-5 pl-5 pb-5 feedContainer">
           <header>
             <div className="card-body">
               <div>
@@ -66,7 +66,7 @@ function Profile() {
               </div>
             </div>
           </header>
-          {resData.user &&
+          {
             resData.user.tweets.map((tweet) => {
               return <Tweet tweet={tweet} author={resData.user} />;
             })}
@@ -74,7 +74,7 @@ function Profile() {
         <hr />
         <%- include('./partials/tweet.ejs', {user, tweets: user.tweets[i]},
         ownTweet) %> <% } %> */}
-        </div>
+        </div>}
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ function Login() {
                 type="text"
                 name="email"
                 id="email"
-                value="picandopiedra"
+                value="nacho"
                 placeholder="Ingrese su email o usuario"
               />
               <span className="focus-input100"></span>
@@ -56,7 +56,7 @@ function Login() {
                 name="password"
                 id="password"
                 placeholder="Password"
-                value="root"
+                value="nacho"
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">

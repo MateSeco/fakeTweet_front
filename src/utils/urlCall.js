@@ -1,8 +1,9 @@
-import axios from "axios";
+/* import axios from "axios";
 import { useSelector } from "react-redux";
-const token = useSelector((state) => state.token);
+
 
 function urlPost(url) {
+  const token = useSelector((state) => state.token);
   axios
     .post(`${process.env.REACT_APP_URL}${url}`, tweet, {
       headers: { Authorization: `Bearer ${token}` },
@@ -11,3 +12,4 @@ function urlPost(url) {
       console.log(res);
     });
 }
+ */
