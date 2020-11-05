@@ -1,9 +1,21 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import {useSelector} from "react-redux"
 const moment= require("moment")
+const axios=require("axios")
 
 function Tweet({tweet, ownTweet}) {
+  const token = useSelector(state => state.token)
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");
+  const [likes, setLikes] = useState(tweet.likes.length);
+
+  function likeTweet(tweetId){
+    axios
+    .get(`${process.env.REACT_APP_URL}/like/${tweetId}`, {headers: {'Authorization':`Bearer ${token}`}},)
+    .then((res) => setLikes(res.data.likes))
+    .catch((err) => console.log("err",err));
+  }
+
   return (
     <div className="container">
       <div className="media mt-4 mb-4">
@@ -26,10 +38,10 @@ function Tweet({tweet, ownTweet}) {
           <div className="tweetInfo">
             <span> {dateFormated}</span>
             <span>
-              <Link to={`/like/${tweet._id}`}>
+              <button type="button" onClick={() => likeTweet(tweet._id)}>
                 <i className="far fa-heart heart"></i>
-              </Link>
-              {tweet.likes.length}{" "}
+              </button>
+              {likes}
             </span>
             {(ownTweet) && 
             <span>
