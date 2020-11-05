@@ -25,9 +25,9 @@ function App() {
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/:username/following" component={Following} />
           <PrivateRoute path="/:username/followers" component={Followers} />
-          <Route path="/:username" component={Profile} />
           <PrivateRoute path="/description" component={Description} />
           <Route path="/tweet" component={Tweet} />
+          <Route path="/:username" component={Profile} />
         </Switch>
       </div>
     </Router>

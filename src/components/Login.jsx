@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -7,9 +7,11 @@ import actions from "../redux/userActions";
 function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
-  function axiosLogin() {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  function axiosLogin(e) {
+    e.preventDefault();
+
     const user = { email: email, password: password };
     console.log(user);
     axios.post(`${process.env.REACT_APP_URL}/login`, user).then((res) => {
@@ -25,6 +27,7 @@ function Login() {
           <form
             className="login100-form validate-form"
             data-parsley-validate=""
+            onSubmit={(e) => axiosLogin(e)}
           >
             <span className="login100-form-title p-b-55"> Login </span>
 
@@ -36,8 +39,8 @@ function Login() {
                 className="input100 rounded-pill"
                 type="text"
                 name="email"
+                onChange={(e) => setEmail(e.target.value)}
                 id="email"
-                value="nacho"
                 placeholder="Ingrese su email o usuario"
               />
               <span className="focus-input100"></span>
@@ -53,10 +56,10 @@ function Login() {
               <input
                 className="input100 rounded-pill"
                 type="password"
+                onChange={(e) => setPassword(e.target.value)}
                 name="password"
                 id="password"
                 placeholder="Password"
-                value="nacho"
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -65,11 +68,7 @@ function Login() {
             </div>
 
             <div className="container-login100-form-btn p-t-25">
-              <button
-                type="button"
-                onClick={() => axiosLogin()}
-                className="login100-form-btn rounded-pill"
-              >
+              <button type="submit" className="login100-form-btn rounded-pill">
                 Inicia sesion
               </button>
             </div>

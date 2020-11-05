@@ -7,7 +7,7 @@ import Tweet from "./Tweet";
 function Home() {
   const token = useSelector((state) => state.token);
   const [resData, setResData] = useState({ tweets: [] });
-
+  const [content, setContent] = useState("");
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_URL}/home`, {
@@ -23,26 +23,31 @@ function Home() {
       .catch((err) => console.log("err", err));
   }, []);
 
-  function sendTweet() {
-    let content = document.getElementById("content").value;
+  function sendTweet(e) {
+    e.preventDefault();
+
     const tweet = { content: content };
     axios
       .post(`${process.env.REACT_APP_URL}/home`, tweet, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
+        console.log(res.data);
+        setResData((rs) => {
+          return { tweets: [res.data, ...rs.tweets] };
+        });
         console.log(res);
       });
   }
 
-  console.log(resData.tweets);
+  /* console.log(resData.tweets); */
 
   return (
     <div className="homeBody">
       <NavComponent />
       <div className="container">
         <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-          <form className="redactTweet pt-3">
+          <form className="redactTweet pt-3" onSubmit={(e) => sendTweet(e)}>
             <div className="form-group">
               <label for="content"></label>
               <textarea
@@ -50,6 +55,7 @@ function Home() {
                 id="content"
                 rows="3"
                 name="content"
+                onChange={(e) => setContent(e.target.value)}
                 placeholder="Whats happening?"
                 required=""
                 data-parsley-require-message="Por favor ingrese un texto"
@@ -58,9 +64,8 @@ function Home() {
               ></textarea>
             </div>
             <button
-              type="button"
+              type="submit"
               className="btn btn-primary rounded-pill tweetButton"
-              onClick={() => sendTweet()}
             >
               Tweet
             </button>

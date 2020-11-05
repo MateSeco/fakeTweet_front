@@ -199,7 +199,9 @@ iframe {
 }
 
 .hov1:hover {
+  color: #d33f8d;
   border-color: #d33f8d;
+  text-decoration: none;
 }
 
 /*//////////////////////////////////////////////////////////////////

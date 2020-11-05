@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -7,12 +7,13 @@ import actions from "../redux/userActions";
 function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
-  function axiosRegister() {
-    let firstName = document.getElementById("firstName").value;
-    let lastName = document.getElementById("lastName").value;
-    let userName = document.getElementById("userName").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  function axiosRegister(e) {
+    e.preventDefault();
     const user = {
       firstName: firstName,
       lastName: lastName,
@@ -33,6 +34,7 @@ function Register() {
           <form
             className="login100-form validate-form center"
             data-parsley-validate=""
+            onSubmit={(e) => axiosRegister(e)}
           >
             <span className="login100-form-title p-b-55"> Registro </span>
 
@@ -44,6 +46,7 @@ function Register() {
                 className="input100 rounded-pill"
                 type="text"
                 name="firstName"
+                onChange={(e) => setFirstName(e.target.value)}
                 id="firstName"
                 aria-describedby="helpId"
                 placeholder="Ingrese un nombre..."
@@ -64,6 +67,7 @@ function Register() {
                 className="input100 rounded-pill"
                 type="text"
                 name="lastName"
+                onChange={(e) => setLastName(e.target.value)}
                 id="lastName"
                 aria-describedby="helpId"
                 placeholder="Ingrese un apellido..."
@@ -84,6 +88,7 @@ function Register() {
                 className="input100 rounded-pill"
                 type="text"
                 name="userName"
+                onChange={(e) => setUserName(e.target.value)}
                 id="userName"
                 aria-describedby="helpId"
                 placeholder="Ingrese un username..."
@@ -105,6 +110,7 @@ function Register() {
                 type="text"
                 name="email"
                 id="email"
+                onChange={(e) => setEmail(e.target.value)}
                 aria-describedby="helpId"
                 placeholder="Ingrese un email..."
                 required=""
@@ -127,6 +133,7 @@ function Register() {
                 className="input100 rounded-pill"
                 type="password"
                 name="password"
+                onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 aria-describedby="helpId"
                 placeholder="Ingrese un password..."
@@ -145,17 +152,13 @@ function Register() {
             </span>
 
             <div className="container-login100-form-btn p-t-25">
-              <button
-                type="button"
-                onClick={() => axiosRegister()}
-                className="login100-form-btn rounded-pill"
-              >
+              <button type="submit" className="login100-form-btn rounded-pill">
                 Registrarse
               </button>
             </div>
 
             <div className="text-center w-full p-t-20">
-              <span className="txt1"> ¿Login? </span>
+              <span className="txt1"> ¿Ya tienes una cuenta? </span>
 
               <Link to={"/login"} className="txt1 bo1 hov1">
                 Inicia sesion

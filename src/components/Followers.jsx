@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -6,11 +6,19 @@ import { useSelector } from "react-redux";
 
 function Followers() {
   const token = useSelector((state) => state.token);
-  let { username } = useParams();
+  const params = useParams();
+  const [resData, setResData] = useState({});
+
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/${username}/followers`, {
+      .get(`${process.env.REACT_APP_URL}/${params.username}/followers`, {
         headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setResData({
+          ...resData,
+          followers: res.data.followers,
+        });
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
@@ -20,36 +28,44 @@ function Followers() {
     <div className="homeBody">
       <NavComponent />
       <div className="container">
-        <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-          <div className="follow">
-            <h2>Followers</h2>
-            <ul className="list-unstyled">
-              {/*  user.followers.forEach((user) => */}
-              <hr />
-              <div className="media mt-5 mb-5">
-                <img
-                  src=""
-                  className="mr-3 rounded-circle profileImageTweet"
-                  alt="..."
-                />
-                <div className="media-body">
-                  <h5 className="mt-0">
-                    <span>
-                      <Link to={"/user.userName"} className="links">
-                        {" "}
-                        user.fullName
-                      </Link>
-                    </span>
-                    <span className="text-muted">@user.userName </span>
-                  </h5>
-                  user.description
-                </div>
-              </div>
-
-              {/*    <%}); %> */}
-            </ul>
+        {resData.followers && (
+          <div className="shadow pr-5 pl-5 pb-5 feedContainer">
+            <div className="follow">
+              <h2>Followers</h2>
+              <ul className="list-unstyled">
+                <hr />
+                {resData.followers.map((follower) => {
+                  return (
+                    <div className="media mt-5 mb-5">
+                      <img
+                        src={`${process.env.REACT_APP_URL}${follower.image}`}
+                        className="mr-3 rounded-circle profileImageTweet"
+                        alt="..."
+                      />
+                      <div className="media-body">
+                        <h5 className="mt-0">
+                          <span>
+                            <Link
+                              to={`/${follower.userName}`}
+                              className="links"
+                            >
+                              {" "}
+                              {follower.firstName} {follower.lastName}
+                            </Link>
+                          </span>
+                          <span className="text-muted">
+                            @{follower.userName}{" "}
+                          </span>
+                        </h5>
+                        {follower.description}
+                      </div>
+                    </div>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ function Tweet({ tweet, author }) {
                 {author.firstName} {author.lastName}
               </Link>
             </span>
-            <span className="text-muted">@{author.userName}</span>
+            <span className="text-muted ml-1">@{author.userName}</span>
           </h5>
 
           <p className="tweetFont"> {tweet.content}</p>
