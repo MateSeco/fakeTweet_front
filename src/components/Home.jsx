@@ -55,7 +55,7 @@ function Home() {
             </button>
           </form>
           { resData.tweets.map(tweet => {
-          return (<Tweet key={tweet._id} tweet={tweet} ownTweet={setResData.ownTweet} />)
+          return (<Tweet key={tweet._id} tweet={tweet} user={tweet.author} ownTweet={setResData.ownTweet} />)
         })
         }
         </div>

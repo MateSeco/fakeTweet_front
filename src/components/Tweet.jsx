@@ -4,7 +4,7 @@ import {useSelector} from "react-redux"
 const moment= require("moment")
 const axios=require("axios")
 
-function Tweet({tweet, ownTweet}) {
+function Tweet({tweet, user, ownTweet}) {
   const token = useSelector(state => state.token)
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");
   const [likes, setLikes] = useState(tweet.likes.length);
@@ -20,18 +20,18 @@ function Tweet({tweet, ownTweet}) {
     <div className="container">
       <div className="media mt-4 mb-4">
         <img
-          src={tweet.author.image}
+          src={user.image}
           className="mr-3 rounded-circle profileImageTweet"
           alt="..."
         />
         <div className="media-body tweetContainer">
           <h5 className="mt-0">
             <span>
-              <Link to={`/${tweet.author.userName}`} className="links">
-              {tweet.author.firstName} {tweet.author.lastName}
+              <Link to={`/${user.userName}`} className="links">
+              {user.firstName} {user.lastName}
               </Link>
             </span>
-            <span className="text-muted">@{tweet.author.userName}</span>
+            <span className="text-muted">@{user.userName}</span>
           </h5>
 
           <p className="tweetFont"> {tweet.content}</p>
