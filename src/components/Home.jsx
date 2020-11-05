@@ -66,7 +66,9 @@ function Home() {
             </button>
           </form>
           {resData.tweets.map((tweet) => {
-            return <Tweet tweet={tweet} author={tweet.author} />;
+            return (
+              <Tweet key={tweet._id} tweet={tweet} author={tweet.author} />
+            );
           })}
         </div>
       </div>
