@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import NavComponent from "./NavComponent";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import Tweet from "./Tweet"
+import Tweet from "./Tweet";
 
 function Home() {
   const token = useSelector((state) => state.token);
-  const[resData, setResData] = useState({ownTweet:"", tweets:[]})
+  const [resData, setResData] = useState({ ownTweet: "", tweets: [] });
 
   useEffect(() => {
   axios
@@ -42,8 +42,8 @@ function Home() {
                 placeholder="Whats happening?"
                 required=""
                 data-parsley-require-message="Por favor ingrese un texto"
-                maxlength="140"
-                data-parsley-maxlength-message="Su tweet excede los 140 caracteres"
+                maxLength="140"
+                data-parsley-maxLength-message="Su tweet excede los 140 caracteres"
               ></textarea>
             </div>
             <button

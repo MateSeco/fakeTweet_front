@@ -1,16 +1,22 @@
 import React, { useEffect } from "react";
 import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 function Profile() {
-  let { username } = useParams();
-  useEffect(() => {
+  const state = useSelector((state) => state);
+  const token = state.token;
+  const username = state.userName;
+
+  /*   useEffect(() => {
     axios
-      .get(`http://localhost:8000/${username}`)
-      .then((res) => console.log(res))
+      .get(`http://localhost:8000/:${username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, []); */
 
   return (
     <div>
@@ -31,16 +37,16 @@ function Profile() {
               <p className="card-text tweetFont "> user.description </p>
               <div className="follows">
                 <span>
-                  <Link to={"/user.userName"} className="links">
+                  <Link to={`/${username}/followers`} className="links">
                     user.followers.length followers
                   </Link>
                 </span>
                 <span className="following">
-                  <Link to={"/user.userName/following"} className="links">
+                  <Link to={`/${username}/following`} className="links">
                     user.following.length following
                   </Link>
                 </span>
-                <Link to={"/user.userName/follow"}>
+                <Link to={`/:${username}/follow`}>
                   <button className="tweetButton rounded-pill btn btn-primary mr-5">
                     follow
                     {/* <% if(alreadyFollowing === true ){ %>
