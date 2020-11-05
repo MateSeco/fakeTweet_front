@@ -14,7 +14,7 @@ function Login() {
     let password = document.getElementById("password").value;
     const user = { email: email, password: password };
     console.log(user);
-    axios.post("http://localhost:8000/login", user).then((res) => {
+    axios.post(`${process.env.REACT_APP_URL}/login`, user).then((res) => {
       dispatch(actions.logged(res.data));
       history.push("/home");
     });

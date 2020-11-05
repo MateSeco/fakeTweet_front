@@ -28,7 +28,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/home" component={Home} />
-          <PrivateRoute path="/following" component={Following} />
+          <PrivateRoute path="/:username/following" component={Following} />
           <PrivateRoute path="/:username/followers" component={Followers} />
           <Route path="/:username" component={Profile} />
           <PrivateRoute path="/description" component={Description} />

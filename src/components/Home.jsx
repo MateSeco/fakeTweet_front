@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavComponent from "./NavComponent";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Tweet from "./Tweet"
 
@@ -10,17 +10,28 @@ function Home() {
 
   useEffect(() => {
   axios
-      .get(`http://localhost:8000/home`, {headers: {'Authorization':`Bearer ${token}`}},)
+      .get(`${process.env.REACT_APP_URL}/home`, {headers: {'Authorization':`Bearer ${token}`}},)
       .then((res) => setResData({ ownTweet:res.data.ownTweet, tweets:res.data.tweets}))
       .catch((err) => console.log("err",err));
   }, []);
-  
+
+  function sendTweet() {
+      let content = document.getElementById("content").value;
+      const tweet = { content: content};
+      axios
+      .post(`${process.env.REACT_APP_URL}/home`, tweet, {headers: {'Authorization':`Bearer ${token}`}},).then((res) => {
+        console.log(res)
+      });
+  }
+
+  console.log(resData.tweets)
+
   return (
     <div className="homeBody">
       <NavComponent />
       <div className="container">
         <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-          <form className="redactTweet pt-3" method="POST" action="/home">
+          <form className="redactTweet pt-3">
             <div className="form-group">
               <label for="content"></label>
               <textarea
@@ -36,14 +47,15 @@ function Home() {
               ></textarea>
             </div>
             <button
-              type="submit"
+              type="button"
               className="btn btn-primary rounded-pill tweetButton"
+              onClick={() => sendTweet()}
             >
               Tweet
             </button>
           </form>
           { resData.tweets.map(tweet => {
-          return (<Tweet tweet={tweet} ownTweet={setResData.ownTweet} />)
+          return (<Tweet key={tweet._id} tweet={tweet} ownTweet={setResData.ownTweet} />)
         })
         }
         </div>

@@ -15,7 +15,7 @@ function Tweet({tweet, ownTweet}) {
         <div className="media-body tweetContainer">
           <h5 className="mt-0">
             <span>
-              <Link to={"/user.userName"} className="links">
+              <Link to={`/${tweet.author.userName}`} className="links">
               {tweet.author.firstName} {tweet.author.lastName}
               </Link>
             </span>
@@ -26,7 +26,7 @@ function Tweet({tweet, ownTweet}) {
           <div className="tweetInfo">
             <span> {dateFormated}</span>
             <span>
-              <Link to={"/like/tweets._id"}>
+              <Link to={`/like/${tweet._id}`}>
                 <i className="far fa-heart heart"></i>
               </Link>
               {tweet.likes.length}{" "}
