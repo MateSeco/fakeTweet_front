@@ -7,12 +7,13 @@ function Home() {
   const token = useSelector((state) => state.token);
 
   useEffect(() => {
-  axios
-      .get(`http://localhost:8000/home`, {headers: {'Authorization':`Bearer ${token}`}},)
+    axios
+      .get(`http://localhost:8000/home`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => res.data)
-      .catch((err) => console.log("err",err));
+      .catch((err) => console.log("err", err));
   }, []);
-  
 
   return (
     <div className="homeBody">
@@ -30,8 +31,8 @@ function Home() {
                 placeholder="Whats happening?"
                 required=""
                 data-parsley-require-message="Por favor ingrese un texto"
-                maxlength="140"
-                data-parsley-maxlength-message="Su tweet excede los 140 caracteres"
+                maxLength="140"
+                data-parsley-maxLength-message="Su tweet excede los 140 caracteres"
               ></textarea>
             </div>
             <button

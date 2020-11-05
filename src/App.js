@@ -2,12 +2,7 @@ import "./css/main.css";
 import "./css/parsley.css";
 import "./css/style.css";
 import "./css/util.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Welcome from "../src/components/Welcome";
 import Login from "../src/components/Login";
 import Register from "./components/Register";
@@ -28,7 +23,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/home" component={Home} />
-          <PrivateRoute path="/following" component={Following} />
+          <PrivateRoute path="/:username/following" component={Following} />
           <PrivateRoute path="/:username/followers" component={Followers} />
           <Route path="/:username" component={Profile} />
           <PrivateRoute path="/description" component={Description} />

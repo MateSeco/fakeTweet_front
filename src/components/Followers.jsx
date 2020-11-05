@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Followers() {
+  const token = useSelector((state) => state.token);
   let { username } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/${username}/followers`)
-      .then((res) => console.log(res))
+      .get(`http://localhost:8000/${username}/followers`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -31,7 +35,7 @@ function Followers() {
                 <div className="media-body">
                   <h5 className="mt-0">
                     <span>
-                      <Link to={"/<%=user.userName %>"} className="links">
+                      <Link to={"/user.userName"} className="links">
                         {" "}
                         user.fullName
                       </Link>
