@@ -6,25 +6,36 @@ import Tweet from "./Tweet";
 
 function Home() {
   const token = useSelector((state) => state.token);
-  const [resData, setResData] = useState({ ownTweet: "", tweets: [] });
+  const [resData, setResData] = useState({ tweets: [] });
 
   useEffect(() => {
-  axios
-      .get(`${process.env.REACT_APP_URL}/home`, {headers: {'Authorization':`Bearer ${token}`}},)
-      .then((res) => setResData({ ownTweet:res.data.ownTweet, tweets:res.data.tweets}))
-      .catch((err) => console.log("err",err));
+    axios
+      .get(`${process.env.REACT_APP_URL}/home`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) =>
+        setResData({
+          ...resData,
+
+          tweets: res.data.tweets,
+        })
+      )
+      .catch((err) => console.log("err", err));
   }, []);
 
   function sendTweet() {
-      let content = document.getElementById("content").value;
-      const tweet = { content: content};
-      axios
-      .post(`${process.env.REACT_APP_URL}/home`, tweet, {headers: {'Authorization':`Bearer ${token}`}},).then((res) => {
-        console.log(res)
+    let content = document.getElementById("content").value;
+    const tweet = { content: content };
+    axios
+      .post(`${process.env.REACT_APP_URL}/home`, tweet, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res);
       });
   }
 
-  console.log(resData.tweets)
+  console.log(resData.tweets);
 
   return (
     <div className="homeBody">
@@ -54,10 +65,9 @@ function Home() {
               Tweet
             </button>
           </form>
-          { resData.tweets.map(tweet => {
-          return (<Tweet key={tweet._id} tweet={tweet} ownTweet={setResData.ownTweet} />)
-        })
-        }
+          {resData.tweets.map((tweet) => {
+            return <Tweet tweet={tweet} author={tweet.author} />;
+          })}
         </div>
       </div>
       {/*      <footer><%- include('./partials/scripts.ejs'); %></footer> */}

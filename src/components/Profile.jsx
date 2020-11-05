@@ -1,22 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Tweet from "./Tweet";
 
 function Profile() {
   const state = useSelector((state) => state);
   const token = state.token;
-  const username = state.userName;
+  const params = useParams();
+  const [resData, setResData] = useState({});
 
-  /*   useEffect(() => {
+  useEffect(() => {
     axios
-      .get(`http://localhost:8000/:${username}`, {
+      .get(`${process.env.REACT_APP_URL}/${params.username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data.user.image);
+        setResData({
+          ...resData,
+
+          user: res.data.user,
+        });
+      })
+      .then(() => console.log(resData.user.image))
       .catch((err) => console.log(err));
-  }, []); */
+  }, []);
 
   return (
     <div>
@@ -28,7 +38,7 @@ function Profile() {
               <div>
                 <img
                   className="profileImage rounded-circle media img-thumbnail"
-                  src="<%- user.image %>"
+                  src={`${process.env.REACT_APP_URL}${resData.user.image}`}
                   alt=""
                 />
               </div>
@@ -37,16 +47,16 @@ function Profile() {
               <p className="card-text tweetFont "> user.description </p>
               <div className="follows">
                 <span>
-                  <Link to={`/${username}/followers`} className="links">
-                    user.followers.length followers
+                  <Link to={`/${params.username}/followers`} className="links">
+                    followers
                   </Link>
                 </span>
                 <span className="following">
-                  <Link to={`/${username}/following`} className="links">
-                    user.following.length following
+                  <Link to={`/${params.username}/following`} className="links">
+                    following
                   </Link>
                 </span>
-                <Link to={`/:${username}/follow`}>
+                <Link to={`/:${params.username}/follow`}>
                   <button className="tweetButton rounded-pill btn btn-primary mr-5">
                     follow
                     {/* <% if(alreadyFollowing === true ){ %>
@@ -56,7 +66,10 @@ function Profile() {
               </div>
             </div>
           </header>
-
+          {resData.user &&
+            resData.user.tweets.map((tweet) => {
+              return <Tweet tweet={tweet} author={resData.user} />;
+            })}
           {/*    <% for (let i = 0; i < user.tweets.length ; i++) { %>
         <hr />
         <%- include('./partials/tweet.ejs', {user, tweets: user.tweets[i]},

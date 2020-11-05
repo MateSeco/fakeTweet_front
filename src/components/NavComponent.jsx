@@ -6,12 +6,11 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function NavComponent() {
   const username = useSelector((state) => state.userName);
-  console.log(username);
   return (
     <div>
       <Navbar bg="primary" variant="dark" className="twitter">
         <div className="container">
-          <Navbar.Brand href="/home">
+          <Navbar.Brand as={Link} to="/home">
             <h1>
               <span className="fakeTwitter">fake</span> Twitter
             </h1>
@@ -23,8 +22,8 @@ function NavComponent() {
               id="collasible-nav-dropdown"
               className="accountStyle"
             >
-              <NavDropdown.Item>
-                <Link to={`/${username}`}>Profile</Link>
+              <NavDropdown.Item as={Link} to={`/${username}`}>
+                Profile
               </NavDropdown.Item>
               <NavDropdown.Item href="/description">Settings</NavDropdown.Item>
               <NavDropdown.Divider />
