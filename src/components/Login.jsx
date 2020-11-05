@@ -3,21 +3,23 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import actions from "../redux/userActions";
+import { reqPost } from "../utils/reqCalls";
 
 function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  function axiosLogin(e) {
+  async function axiosLogin(e) {
     e.preventDefault();
 
     const user = { email: email, password: password };
-    console.log(user);
-    axios.post(`${process.env.REACT_APP_URL}/login`, user).then((res) => {
-      dispatch(actions.logged(res.data));
-      history.push("/home");
-    });
+
+    const res = await reqPost("/login", user, null);
+    // axios.post(`${process.env.REACT_APP_URL}/login`, user).then((res) => {
+    dispatch(actions.logged(res.data));
+    history.push("/home");
+    //});
   }
 
   return (

@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Tweet from "./Tweet";
+import { reqGet } from "../utils/reqCalls";
 
 function Profile() {
   const state = useSelector((state) => state);
@@ -12,10 +13,11 @@ function Profile() {
   const [resData, setResData] = useState({});
 
   useEffect(() => {
-    axios
+    reqGet(`/${params.username}`, token)
+    /* axios
       .get(`${process.env.REACT_APP_URL}/${params.username}`, {
         headers: { Authorization: `Bearer ${token}` },
-      })
+      }) */
       .then((res) => {
         console.log(res.data.user);
         setResData({
