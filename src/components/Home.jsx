@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavComponent from "./NavComponent";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Tweet from "./Tweet"
 
 function Home() {
   const token = useSelector((state) => state.token);
+  const[resData, setResData] = useState({ownTweet:"", tweets:[]})
 
   useEffect(() => {
   axios
       .get(`http://localhost:8000/home`, {headers: {'Authorization':`Bearer ${token}`}},)
-      .then((res) => res.data)
+      .then((res) => setResData({ ownTweet:res.data.ownTweet, tweets:res.data.tweets}))
       .catch((err) => console.log("err",err));
   }, []);
   
-
   return (
     <div className="homeBody">
       <NavComponent />
@@ -41,11 +42,10 @@ function Home() {
               Tweet
             </button>
           </form>
-          {/* 
-        <% for(let j = 0; j < tweets.length; j++) { %>
-        <hr />
-        <%- include('./partials/tweet.ejs', {user:tweets[j].author, tweets:
-        tweets[j], ownTweet: false}) %> <% } %> */}
+          { resData.tweets.map(tweet => {
+          return (<Tweet tweet={tweet} ownTweet={setResData.ownTweet} />)
+        })
+        }
         </div>
       </div>
       {/*      <footer><%- include('./partials/scripts.ejs'); %></footer> */}
