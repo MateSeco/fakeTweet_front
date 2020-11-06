@@ -23,13 +23,14 @@ function Profile() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data.user);
-        dispatch(actions.saveTweets(res.data.user))
+        console.log("LLAMADA DE PROFILE",res.data);
+        dispatch(actions.saveTweets(res.data))
       })
       .catch((err) => console.log(err));
-  }, [params]);
+  }, []);
 
-  return (
+  return(<div>HELLO</div>)
+  /* return (
     <div>
       <NavComponent />
       <div className="container">
@@ -74,8 +75,7 @@ function Profile() {
                   <Link to={`/:${params.username}/follow`}>
                     <button className="tweetButton rounded-pill btn btn-primary ">
                       follow
-                      {/* <% if(alreadyFollowing === true ){ %>
-                  Unfollow<%}else{%>Follow<%}%> */}
+                      
                     </button>
                   </Link>
                 </div>
@@ -91,7 +91,7 @@ function Profile() {
         )}
       </div>
     </div>
-  );
+  ); */
 }
 
 export default Profile;
