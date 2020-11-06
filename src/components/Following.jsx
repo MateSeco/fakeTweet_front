@@ -5,12 +5,12 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 function Following() {
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.userReducer.token);
   const params = useParams();
   const [resData, setResData] = useState({});
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_URL}/${params.username}/following`, {
+      .get(`${process.env.REACT_APP_URL}/users/${params.username}/following`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

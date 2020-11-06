@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import actions from "../redux/userActions";
+import actions from "../redux/Actions/userActions";
 
 function Register() {
   const dispatch = useDispatch();

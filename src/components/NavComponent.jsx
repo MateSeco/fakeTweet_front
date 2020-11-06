@@ -5,7 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function NavComponent() {
-  const username = useSelector((state) => state.userName);
+  const username = useSelector((state) => state.userReducer.userName);
   return (
     <div>
       <Navbar bg="primary" variant="dark" className="twitter">

@@ -6,16 +6,16 @@ const moment = require("moment");
 const axios = require("axios");
 
 function Tweet({ tweet, author }) {
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.userReducer.token);
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");
   const [likes, setLikes] = useState(tweet.likes.length);
 
   function likeTweet(tweetId) {
-    reqGet(`/like/${tweetId}`, token)
-    /* axios
-      .get(`${process.env.REACT_APP_URL}/like/${tweetId}`, {
+    /* reqGet(`/like/${tweetId}`, token) */
+    axios
+      .put(`${process.env.REACT_APP_URL}/tweets/${tweetId}`, {
         headers: { Authorization: `Bearer ${token}` },
-      }) */
+      })
       .then((res) => setLikes(res.data.likes))
       .catch((err) => console.log("err", err));
   }

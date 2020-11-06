@@ -6,16 +6,16 @@ import { useSelector } from "react-redux";
 import { reqPost, reqGet } from "../utils/reqCalls";
 
 function Followers() {
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.userReducer.token);
   const params = useParams();
   const [resData, setResData] = useState({});
 
   useEffect(() => {
-    reqGet(`${params.username}/followers`, token)
+    /* reqGet(`${params.username}/followers`, token)
       .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-    /* axios
-      .get(`http://localhost:8000/${username}/followers`, {
+      .catch((err) => console.log(err)); */
+    axios
+      .get(`http://localhost:8000/users/${params.username}/followers`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -25,7 +25,7 @@ function Followers() {
         });
       })
       .then((res) => console.log(res.data))
-      .catch((err) => console.log(err)); */
+      .catch((err) => console.log(err));
   }, []);
 
   return (
