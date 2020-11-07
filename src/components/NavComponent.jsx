@@ -2,9 +2,13 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import userActions from "../redux/Actions/userActions"
+
+
 function NavComponent() {
+  const dispatch = useDispatch();
   const username = useSelector((state) => state.userReducer.userName);
   return (
     <div>
@@ -27,7 +31,7 @@ function NavComponent() {
               </NavDropdown.Item>
               <NavDropdown.Item href="/description">Settings</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="Logout">Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => dispatch(userActions.loggedOut())} as={Link} to={`/`} >Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </div>

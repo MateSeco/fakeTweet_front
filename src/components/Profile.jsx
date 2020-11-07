@@ -76,11 +76,11 @@ console.log("profile._id !== user.userId: ",profile._id !== user.userId)
                       {profile.following.length} Following
                     </Link>
                   </span>
-                  {profile._id !== user.userId && <FollowButton params={params} />}
+                  { user.userId && profile._id !== user.userId && <FollowButton params={params} />}
                  
                 </div>
 
-                <CreateTweet />
+               { profile._id === user.userId && <CreateTweet />}
               </div>
             </header>
 

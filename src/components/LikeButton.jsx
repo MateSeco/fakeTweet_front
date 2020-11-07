@@ -11,25 +11,27 @@ function LikeButton({ tweet }) {
   const [likes, setLikes] = useState(tweet.likes.length);
   const [pregunta, setPregunta] = useState();
 
-  function handleLike() {
+
+   useEffect(() => {
+    setPregunta(tweet.likes.includes(userId));
+  }, [likes]);
+ 
+  function handleLike() {    
     tweet.likes.includes(userId)
-      ? dispatch(actions.dislike(tweet._id, userId))
-      : dispatch(actions.like(tweet._id, userId));
-    /* reqGet(`/like/${tweetId}`, token) */
+     ? dispatch(actions.dislike(tweet._id, userId))
+     :dispatch(actions.like(tweet._id, userId));
+          
     axios({
       method: "put",
       url: `${process.env.REACT_APP_URL}/tweets/${tweet._id}`,
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((res) => setLikes(res.data.likes))
-      /*     .then((r) => dispatch(actions.saveTweets(res.data.tweets)) */
+      .then((res) => {setLikes(res.data.likes);})
       .catch((err) => console.log("err", err));
   }
 
-  /*   useEffect(() => {
-    setPregunta(tweet.likes.includes(userId));
-  }, [likes]);
- */
+    
+ 
   return (
     <span>
       <button type="button" onClick={handleLike}>

@@ -9,6 +9,9 @@ function userReducer(state = [], action) {
         userId: action.payload.userId,
       };
 
+    case "LOGGED_OUT":
+      return [];
+
     default:
       return state;
   }

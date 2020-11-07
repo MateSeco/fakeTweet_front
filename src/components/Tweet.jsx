@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { reqGet } from "../utils/reqCalls";
 import LikeButton from "./LikeButton";
+import DeleteButton from "./DeleteButton";
 const moment = require("moment");
 const axios = require("axios");
 
@@ -33,9 +34,10 @@ function Tweet({ tweet, author }) {
             <span> {dateFormated}</span>
             <LikeButton tweet={tweet} />
             <span>
-              <Link to={"/user.userName/delete/tweets._id"} className="delete">
+              <DeleteButton tweet={tweet}/>
+              {/* <Link to={"/user.userName/delete/tweets._id"} className="delete">
                 <i className="far fa-trash-alt ml-2"></i>
-              </Link>
+              </Link> */}
             </span>
           </div>
         </div>

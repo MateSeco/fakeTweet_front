@@ -10,5 +10,11 @@ const logged = (data) => {
   };
 };
 
-const actions = { logged };
+const loggedOut = () => {
+  return {
+    type: "LOGGED_OUT",
+  };
+};
+
+const actions = { logged, loggedOut };
 export default actions;

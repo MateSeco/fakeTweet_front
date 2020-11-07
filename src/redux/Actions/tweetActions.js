@@ -12,6 +12,13 @@ const addTweet = (newTweet) => {
   };
 };
 
+const deleteTweet = (tweetId) => {
+  return {
+    type: "DELETE_TWEET",
+    payload: tweetId,
+  };
+};
+
 const like = (tweetId, userId) => {
   return {
     type: "LIKE",
@@ -26,5 +33,5 @@ const dislike = (tweetId, userId) => {
   };
 };
 
-const actions = { saveTweets, addTweet, like, dislike };
+const actions = { saveTweets, addTweet, deleteTweet, like, dislike };
 export default actions;
