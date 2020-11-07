@@ -9,22 +9,21 @@ import { reqPost, reqGet } from "../utils/reqCalls";
 function CreateTweet() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.userReducer.token);
-  const tweets = useSelector((state) => state.tweets);
+  const tweets = useSelector((state) => state.tweetReducer);
   const [content, setContent] = useState("");
 
   function sendTweet(e) {
     e.preventDefault();
-
     const tweet = { content: content };
     /* reqPost("/home", tweet, token).then((res) => res); */
-
     axios
       .post(`${process.env.REACT_APP_URL}/tweets`, tweet, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        /*  if (!tweets.firstName) */
-        dispatch(actions.addTweet(res.data));
+        if (!tweets.firstName) {
+          dispatch(actions.addTweet(res.data));
+        }
       });
   }
 
