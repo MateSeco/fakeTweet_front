@@ -1,4 +1,4 @@
-function tweetReducer(state = [], action) {
+function tweets(state = [], action) {
   switch (action.type) {
     case "SAVE_TWEETS":
       return action.payload;
@@ -7,9 +7,30 @@ function tweetReducer(state = [], action) {
       auxState.unshift(action.payload);
       return auxState;
 
+    case "LIKE":
+      return state.map((tweet) => {
+        if (tweet.id === action.payload.tweetId) {
+          return { ...tweet, likes: [...tweet.likes, action.payload.userId] };
+        }
+        return tweet;
+      });
+
+    case "DISLIKE":
+      return state.map((tweet) => {
+        if (tweet.id === action.payload.tweetId) {
+          return {
+            ...tweet,
+            likes: [
+              tweet.likes.filter((user) => user !== action.payload.userId),
+            ],
+          };
+        }
+        return tweet;
+      });
+
     default:
       return state;
   }
 }
 
-export default tweetReducer;
+export default tweets;

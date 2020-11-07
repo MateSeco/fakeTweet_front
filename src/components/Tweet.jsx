@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { reqGet } from "../utils/reqCalls";
+import LikeButton from "./LikeButton";
 const moment = require("moment");
 const axios = require("axios");
 
 function Tweet({ tweet, author }) {
   const token = useSelector((state) => state.userReducer.token);
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");
-  const [likes, setLikes] = useState(tweet.likes.length);
-
-  function likeTweet(tweetId) {
-    /* reqGet(`/like/${tweetId}`, token) */
-    axios
-      .put(`${process.env.REACT_APP_URL}/tweets/${tweetId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setLikes(res.data.likes))
-      .catch((err) => console.log("err", err));
-  }
 
   return (
     <div className="container">
@@ -41,13 +31,7 @@ function Tweet({ tweet, author }) {
           <p className="tweetFont"> {tweet.content}</p>
           <div className="tweetInfo">
             <span> {dateFormated}</span>
-            <span>
-              <button type="button" onClick={() => likeTweet(tweet._id)}>
-                <i className="far fa-heart heart"></i>
-              </button>
-              {likes}
-            </span>
-
+            <LikeButton tweet={tweet} />
             <span>
               <Link to={"/user.userName/delete/tweets._id"} className="delete">
                 <i className="far fa-trash-alt ml-2"></i>

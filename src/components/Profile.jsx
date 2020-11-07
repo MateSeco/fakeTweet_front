@@ -5,16 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Tweet from "./Tweet";
 import { reqGet } from "../utils/reqCalls";
-import actions from "../redux/Actions/tweetActions" 
-import CreateTweet from "./CreateTweet"
+import actions from "../redux/Actions/tweetActions";
+import CreateTweet from "./CreateTweet";
 
 function Profile() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.tweetReducer);
+  const tweets = useSelector((state) => state.tweets);
   const state = useSelector((state) => state);
   const token = state.userReducer.token;
   const params = useParams();
-/*   const [resData, setResData] = useState({}); */
+  /*   const [resData, setResData] = useState({}); */
 
   useEffect(() => {
     /* reqGet(`/${params.username}`, token) */
@@ -23,37 +23,36 @@ function Profile() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("LLAMADA DE PROFILE",res.data);
-        dispatch(actions.saveTweets(res.data))
+        console.log("LLAMADA DE PROFILE", res.data);
+        dispatch(actions.saveTweets(res.data));
       })
       .catch((err) => console.log(err));
   }, []);
 
-  return(<div>HELLO</div>)
-  /* return (
+  return (
     <div>
       <NavComponent />
       <div className="container">
-        {user.firstName && (
+        {tweets[0].author.firstName && (
           <div className="shadow pr-5 pl-5 pb-5 feedContainer">
             <header>
               <div className="card-body">
                 <div>
                   <img
                     className="profileImage rounded-circle media"
-                    src={`${process.env.REACT_APP_URL}${user.image}`}
+                    src={`${process.env.REACT_APP_URL}${tweets[0].author.image}`}
                     alt=""
                   />
                 </div>
                 <h3 className="card-title">
                   {" "}
-                  {user.firstName} {user.lastName}
+                  {tweets[0].author.firstName} {tweets[0].author.lastName}
                 </h3>
                 <h5 className="card-subtitle mb-2 text-muted">
-                  @{user.userName}
+                  @{tweets[0].author.userName}
                 </h5>
                 <p className="card-text tweetFont ">
-                  {user.description}
+                  {tweets[0].author.description}
                 </p>
                 <div className="follows">
                   <span>
@@ -61,7 +60,7 @@ function Profile() {
                       to={`/${params.username}/followers`}
                       className="links"
                     >
-                      Followers
+                      {tweets[0].author.followers.length} Followers
                     </Link>
                   </span>
                   <span className="ml-4">
@@ -69,29 +68,28 @@ function Profile() {
                       to={`/${params.username}/following`}
                       className="links"
                     >
-                      {user.following.length} Following
+                      {tweets[0].author.following.length} Following
                     </Link>
                   </span>
                   <Link to={`/:${params.username}/follow`}>
                     <button className="tweetButton rounded-pill btn btn-primary ">
                       follow
-                      
                     </button>
                   </Link>
                 </div>
-            
+
                 <CreateTweet />
               </div>
             </header>
-            
-            {user.tweets.map((tweet) => {
-              return <Tweet tweet={tweet} author={user} />;
+
+            {tweets.map((tweet) => {
+              return <Tweet tweet={tweet} author={tweet.author} />;
             })}
           </div>
         )}
       </div>
     </div>
-  ); */
+  );
 }
 
 export default Profile;

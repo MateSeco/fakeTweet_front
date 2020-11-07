@@ -37,6 +37,10 @@ nav .twitter {
   font-size: 1.5rem;
 }
 
+.fas {
+  color: #ed4264;
+}
+
 .twitter {
   font-weight: 500;
   line-height: 1.2;

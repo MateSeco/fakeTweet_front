@@ -12,5 +12,19 @@ const addTweet = (newTweet) => {
   };
 };
 
-const actions = { saveTweets, addTweet };
+const like = (tweetId, userId) => {
+  return {
+    type: "LIKE",
+    payload: { tweetId, userId },
+  };
+};
+
+const dislike = (tweetId, userId) => {
+  return {
+    type: "DISLIKE",
+    payload: { tweetId, userId },
+  };
+};
+
+const actions = { saveTweets, addTweet, like, dislike };
 export default actions;
