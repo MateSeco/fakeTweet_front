@@ -5,16 +5,20 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Tweet from "./Tweet";
 import { reqGet } from "../utils/reqCalls";
-import actions from "../redux/Actions/tweetActions";
+import tweetActions from "../redux/Actions/tweetActions";
+import profileActions from "../redux/Actions/profileActions";
 import CreateTweet from "./CreateTweet";
+import FollowButton from "./FollowButton"
 
 function Profile() {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.userReducer)
   const tweets = useSelector((state) => state.tweets);
+  const profile = useSelector((state) => state.profile);
   const state = useSelector((state) => state);
   const token = state.userReducer.token;
   const params = useParams();
-  /*   const [resData, setResData] = useState({}); */
+ 
 
   useEffect(() => {
     /* reqGet(`/${params.username}`, token) */
@@ -23,36 +27,37 @@ function Profile() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("LLAMADA DE PROFILE", res.data);
-        dispatch(actions.saveTweets(res.data));
+        dispatch(tweetActions.saveTweets(res.data.tweets));
+        dispatch(profileActions.addProfile(res.data))
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [params]);
 
+console.log("profile._id !== user.userId: ",profile._id !== user.userId)
   return (
     <div>
       <NavComponent />
       <div className="container">
-        {tweets[0].author.firstName && (
+        {profile.firstName && (
           <div className="shadow pr-5 pl-5 pb-5 feedContainer">
             <header>
               <div className="card-body">
                 <div>
                   <img
                     className="profileImage rounded-circle media"
-                    src={`${process.env.REACT_APP_URL}${tweets[0].author.image}`}
+                    src={`${process.env.REACT_APP_URL}${profile.image}`}
                     alt=""
                   />
                 </div>
                 <h3 className="card-title">
                   {" "}
-                  {tweets[0].author.firstName} {tweets[0].author.lastName}
+                  {profile.firstName} {profile.lastName}
                 </h3>
                 <h5 className="card-subtitle mb-2 text-muted">
-                  @{tweets[0].author.userName}
+                  @{profile.userName}
                 </h5>
                 <p className="card-text tweetFont ">
-                  {tweets[0].author.description}
+                  {profile.description}
                 </p>
                 <div className="follows">
                   <span>
@@ -60,7 +65,7 @@ function Profile() {
                       to={`/${params.username}/followers`}
                       className="links"
                     >
-                      {tweets[0].author.followers.length} Followers
+                      {profile.followers.length} Followers
                     </Link>
                   </span>
                   <span className="ml-4">
@@ -68,14 +73,11 @@ function Profile() {
                       to={`/${params.username}/following`}
                       className="links"
                     >
-                      {tweets[0].author.following.length} Following
+                      {profile.following.length} Following
                     </Link>
                   </span>
-                  <Link to={`/:${params.username}/follow`}>
-                    <button className="tweetButton rounded-pill btn btn-primary ">
-                      follow
-                    </button>
-                  </Link>
+                  {profile._id !== user.userId && <FollowButton params={params} />}
+                 
                 </div>
 
                 <CreateTweet />
@@ -83,7 +85,7 @@ function Profile() {
             </header>
 
             {tweets.map((tweet) => {
-              return <Tweet tweet={tweet} author={tweet.author} />;
+              return <Tweet key={tweet._id} tweet={tweet} author={profile} />;
             })}
           </div>
         )}

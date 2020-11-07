@@ -26,17 +26,17 @@ function Home() {
   return (
     <div className="homeBody">
       <NavComponent />
-      <div className="container">
+     {!tweets.firstName && <div className="container">
         <div className="shadow pr-5 pl-5 pb-5 feedContainer">
           <CreateTweet />
-          {tweets &&
-            tweets.map((tweet) => {
+          
+            {tweets.map((tweet) => {
               return (
                 <Tweet key={tweet._id} tweet={tweet} author={tweet.author} />
               );
             })}
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

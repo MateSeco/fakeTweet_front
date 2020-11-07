@@ -9,7 +9,7 @@ import { reqPost, reqGet } from "../utils/reqCalls";
 function CreateTweet() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.userReducer.token);
-  const tweets = useSelector((state) => state.tweetReducer);
+  const tweets = useSelector((state) => state.tweets);
   const [content, setContent] = useState("");
 
   function sendTweet(e) {
@@ -21,9 +21,10 @@ function CreateTweet() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        if (!tweets.firstName) {
+        console.log(tweets)
+
           dispatch(actions.addTweet(res.data));
-        }
+        
       });
   }
 
