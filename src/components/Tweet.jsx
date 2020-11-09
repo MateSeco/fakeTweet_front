@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { reqGet } from "../utils/reqCalls";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 const moment = require("moment");
 
 function Tweet({ tweet, author }) {
-  const token = useSelector((state) => state.user.token);
   const user = useSelector((state) => state.user);
 
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");

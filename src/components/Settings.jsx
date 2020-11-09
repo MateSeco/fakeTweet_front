@@ -9,6 +9,7 @@ function Settings() {
   const token = useSelector((state) => state.user.token);
   const history = useHistory();
   const params = useParams();
+  const [files, setFiles] = useState(null)
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -26,22 +27,34 @@ function Settings() {
       });
   }, []);
 
+function uploadFiles(event) {
+  setFiles(event.target.files[0]);
+}
+
   function axiosUpdate(e) {
     e.preventDefault();
+    
     const user = {
       firstName: firstName,
       lastName: lastName,
       userName: userName,
       description: description,
     };
+    const formData = new FormData(); 
+    formData.append("firstName",  user.firstName);
+    formData.append("lastName", user.lastName);
+    formData.append("userName", user.userName);
+    formData.append("description", user.description);
+        
+      // Update the formData object 
+    formData.append("image", files, files.name ); 
     axios({
       method: "put",
       url: `${process.env.REACT_APP_URL}/users`,
-      data: user,
+      data: formData, 
       headers: { Authorization: `Bearer ${token}` },
     }).then((res) => {
       console.log(res);
-      /*   dispatch(actions.logged(res.data)); */
       history.push(`/${userName}`);
     });
   }
@@ -53,7 +66,7 @@ function Settings() {
         <div className="shadow pr-5 pl-5 pb-5 pt-5 d-flex justify-content-center align-items-center feedContainer">
           <div className="">
             <form
-              enctype="multipart/form-data"
+              encType="multipart/form-data"
               data-parsley-validate=""
               onSubmit={(e) => axiosUpdate(e)}
             >
@@ -124,11 +137,13 @@ function Settings() {
                 </textarea>
                 <div className="row">
                   <div className="col-sm-6">
-                    {/*    <h4 className="pt-3 pb-2">
+                       <h4 className="pt-3 pb-2">
                       <label for="imagen">Upload an image</label>
                     </h4>
                     <input
                       type="file"
+                      multiple
+                      onChange={e =>uploadFiles(e)}
                       className="form-control-file"
                       name="image"
                       id="image"
@@ -137,7 +152,7 @@ function Settings() {
                     />
                     <small id="fileHelpId" class="form-text text-muted mb-5">
                       Inserte un archivo JPG o PNG
-                    </small> */}
+                    </small>
                   </div>
                   <div className="col-sm-6">
                     <button
