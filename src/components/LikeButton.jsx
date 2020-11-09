@@ -11,27 +11,26 @@ function LikeButton({ tweet }) {
   const [likes, setLikes] = useState(tweet.likes.length);
   const [pregunta, setPregunta] = useState();
 
-
-   useEffect(() => {
+  useEffect(() => {
     setPregunta(tweet.likes.includes(userId));
   }, [likes]);
- 
-  function handleLike() {    
+
+  function handleLike() {
     tweet.likes.includes(userId)
-     ? dispatch(actions.dislike(tweet._id, userId))
-     :dispatch(actions.like(tweet._id, userId));
-          
+      ? dispatch(actions.dislike(tweet._id, userId))
+      : dispatch(actions.like(tweet._id, userId));
+
     axios({
       method: "put",
       url: `${process.env.REACT_APP_URL}/tweets/${tweet._id}`,
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((res) => {setLikes(res.data.likes);})
+      .then((res) => {
+        setLikes(res.data.likes);
+      })
       .catch((err) => console.log("err", err));
   }
 
-    
- 
   return (
     <span>
       <button type="button" onClick={handleLike}>
@@ -46,17 +45,3 @@ function LikeButton({ tweet }) {
   );
 }
 export default LikeButton;
-
-/* 
-return (
-  <span>
-    <button type="button" onClick={() => likeTweet(tweet._id)}>
-      {pregunta ? (
-        <i className="fas fa-heart heart"></i>
-      ) : (
-        <i className="far fa-heart heart"></i>
-      )}
-    </button>
-    {likes}
-  </span>
-); */

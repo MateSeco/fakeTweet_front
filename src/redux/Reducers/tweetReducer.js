@@ -2,10 +2,13 @@ function tweets(state = [], action) {
   switch (action.type) {
     case "SAVE_TWEETS":
       return action.payload;
+
     case "ADD_TWEET":
       let auxState = [...state];
       auxState.unshift(action.payload);
       return auxState;
+
+    /* [new Tweet, ...tweets] -->> otra manera de hacer ADD Tweet*/
 
     case "DELETE_TWEET":
       return [...state.filter((tweet) => tweet._id !== action.payload)];

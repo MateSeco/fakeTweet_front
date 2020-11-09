@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,33 +8,32 @@ import { reqGet } from "../utils/reqCalls";
 import tweetActions from "../redux/Actions/tweetActions";
 import profileActions from "../redux/Actions/profileActions";
 import CreateTweet from "./CreateTweet";
-import FollowButton from "./FollowButton"
+import FollowButton from "./FollowButton";
 
 function Profile() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user);
   const tweets = useSelector((state) => state.tweets);
   const profile = useSelector((state) => state.profile);
   /* const state = useSelector((state) => state); */
   const token = user.token;
   const params = useParams();
- 
 
   useEffect(() => {
-    dispatch(tweetActions.saveTweets([]))
-    dispatch(profileActions.addProfile({}))
+    dispatch(tweetActions.saveTweets([]));
+    dispatch(profileActions.addProfile({}));
     axios
       .get(`${process.env.REACT_APP_URL}/users/${params.username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         dispatch(tweetActions.saveTweets(res.data.tweets));
-        dispatch(profileActions.addProfile(res.data))
+        dispatch(profileActions.addProfile(res.data));
       })
       .catch((err) => console.log(err));
   }, [params]);
 
-console.log("profile._id !== user.userId: ",profile._id !== user.userId)
+  console.log("profile._id !== user.userId: ", profile._id !== user.userId);
   return (
     <div>
       <NavComponent />
@@ -57,9 +56,7 @@ console.log("profile._id !== user.userId: ",profile._id !== user.userId)
                 <h5 className="card-subtitle mb-2 text-muted">
                   @{profile.userName}
                 </h5>
-                <p className="card-text tweetFont ">
-                  {profile.description}
-                </p>
+                <p className="card-text tweetFont ">{profile.description}</p>
                 <div className="follows">
                   <span>
                     <Link
@@ -77,11 +74,12 @@ console.log("profile._id !== user.userId: ",profile._id !== user.userId)
                       {profile.following.length} Following
                     </Link>
                   </span>
-                  { user.userId && profile._id !== user.userId && <FollowButton params={params} />}
-                 
+                  {user.userId && profile._id !== user.userId && (
+                    <FollowButton params={params} />
+                  )}
                 </div>
 
-               { profile._id === user.userId && <CreateTweet />}
+                {profile._id === user.userId && <CreateTweet />}
               </div>
             </header>
 

@@ -5,10 +5,11 @@ import { reqGet } from "../utils/reqCalls";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 const moment = require("moment");
-const axios = require("axios");
 
 function Tweet({ tweet, author }) {
   const token = useSelector((state) => state.user.token);
+  const user = useSelector((state) => state.user);
+
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");
 
   return (
@@ -33,12 +34,11 @@ function Tweet({ tweet, author }) {
           <div className="tweetInfo">
             <span> {dateFormated}</span>
             <LikeButton tweet={tweet} />
-            <span>
-              <DeleteButton tweet={tweet}/>
-              {/* <Link to={"/user.userName/delete/tweets._id"} className="delete">
-                <i className="far fa-trash-alt ml-2"></i>
-              </Link> */}
-            </span>
+            {user.userId === author._id && (
+              <span>
+                <DeleteButton tweet={tweet} />
+              </span>
+            )}
           </div>
         </div>
       </div>
