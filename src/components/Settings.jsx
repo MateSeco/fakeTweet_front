@@ -1,7 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import NavComponent from "./NavComponent";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
-function Description() {
+function Settings() {
+  const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.user.token);
+  const history = useHistory();
+  const params = useParams();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [description, setDescription] = useState("");
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_URL}/users/${params.username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setFirstName(res.data.firstName);
+        setLastName(res.data.lastName);
+        setUserName(res.data.userName);
+        setDescription(res.data.description);
+      });
+  }, []);
+
+  function axiosUpdate(e) {
+    e.preventDefault();
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+      description: description,
+    };
+    axios({
+      method: "put",
+      url: `${process.env.REACT_APP_URL}/users`,
+      data: user,
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((res) => {
+      console.log(res);
+      /*   dispatch(actions.logged(res.data)); */
+      history.push(`/${userName}`);
+    });
+  }
+
   return (
     <div className="homeBody">
       <NavComponent />
@@ -9,10 +53,9 @@ function Description() {
         <div className="shadow pr-5 pl-5 pb-5 pt-5 d-flex justify-content-center align-items-center feedContainer">
           <div className="">
             <form
-              action="/register/description"
-              method="POST"
               enctype="multipart/form-data"
               data-parsley-validate=""
+              onSubmit={(e) => axiosUpdate(e)}
             >
               <h2 className="text-center mb-5">Edit profile</h2>
               <div className="form-row align-items-center">
@@ -22,9 +65,11 @@ function Description() {
                     type="text"
                     className="form-control"
                     name="firstName"
+                    onChange={(e) => setFirstName(e.target.value)}
                     id="firstName"
                     required=""
                     data-parsley-required-message="Por favor ingrese un nombre"
+                    value={firstName}
                   />
                 </div>
                 <div className="col-sm-4 my-1">
@@ -32,9 +77,11 @@ function Description() {
                   <input
                     type="text"
                     className="form-control"
+                    onChange={(e) => setLastName(e.target.value)}
                     id="lastName"
                     name="lastName"
                     required=""
+                    value={lastName}
                     data-parsley-required-message="Por favor ingrese un apellido"
                   />
                 </div>
@@ -48,8 +95,10 @@ function Description() {
                       type="text"
                       className="form-control"
                       id="userName"
+                      onChange={(e) => setUserName(e.target.value)}
                       name="userName"
                       required=""
+                      value={userName}
                       data-parsley-required-message="Por favor ingrese un nombre de usuario"
                     />
                   </div>
@@ -67,13 +116,15 @@ function Description() {
                   placeholder="Ingrese una descripcion"
                   data-parsley-required-message="Por favor ingrese una descripcion"
                   required=""
+                  value={description}
                   aria-describedby="helpId"
+                  onChange={(e) => setDescription(e.target.value)}
                 >
                   user.description
                 </textarea>
                 <div className="row">
                   <div className="col-sm-6">
-                    <h4 className="pt-3 pb-2">
+                    {/*    <h4 className="pt-3 pb-2">
                       <label for="imagen">Upload an image</label>
                     </h4>
                     <input
@@ -86,7 +137,7 @@ function Description() {
                     />
                     <small id="fileHelpId" class="form-text text-muted mb-5">
                       Inserte un archivo JPG o PNG
-                    </small>
+                    </small> */}
                   </div>
                   <div className="col-sm-6">
                     <button
@@ -109,4 +160,4 @@ function Description() {
     </div>
   );
 }
-export default Description;
+export default Settings;

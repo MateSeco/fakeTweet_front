@@ -4,8 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import userActions from "../redux/Actions/userActions"
-
+import userActions from "../redux/Actions/userActions";
 
 function NavComponent() {
   const dispatch = useDispatch();
@@ -29,9 +28,17 @@ function NavComponent() {
               <NavDropdown.Item as={Link} to={`/${username}`}>
                 Profile
               </NavDropdown.Item>
-              <NavDropdown.Item href="/description">Settings</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={`/${username}/settings`}>
+                Settings
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => dispatch(userActions.loggedOut())} as={Link} to={`/`} >Logout</NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => dispatch(userActions.loggedOut())}
+                as={Link}
+                to={`/`}
+              >
+                Logout
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </div>
