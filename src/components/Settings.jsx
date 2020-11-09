@@ -16,10 +16,11 @@ function Settings() {
   const [description, setDescription] = useState("");
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_URL}/users/${params.username}`, {
+      .get(`${process.env.REACT_APP_URL}/users/${userName}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
+        console.log("RES>DATA : ", res.data)
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
         setUserName(res.data.userName);
@@ -60,7 +61,8 @@ function uploadFiles(event) {
   }
 
   return (
-    <div className="homeBody">
+    <>
+    {user && <div className="homeBody">
       <NavComponent />
       <div className="container">
         <div className="shadow pr-5 pl-5 pb-5 pt-5 d-flex justify-content-center align-items-center feedContainer">
@@ -172,7 +174,8 @@ function uploadFiles(event) {
           </div>
         </div>
       </div>
-    </div>
+    </div>}
+    </>
   );
 }
 export default Settings;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import actions from "../redux/Actions/userActions";
@@ -7,6 +7,7 @@ import actions from "../redux/Actions/userActions";
 function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const params = useParams();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -21,9 +22,9 @@ function Register() {
       email: email,
       password: password,
     };
-    axios.post("http://localhost:8000/register", user).then((res) => {
+    axios.post("http://localhost:8000/users", user).then((res) => {
       dispatch(actions.logged(res.data));
-      history.push("/description");
+      history.push(`/${userName}/settings`);
     });
   }
 

@@ -33,7 +33,6 @@ function Profile() {
       .catch((err) => console.log(err));
   }, [params]);
 
-  console.log("profile._id !== user.userId: ", profile._id !== user.userId);
   return (
     <div>
       <NavComponent />
