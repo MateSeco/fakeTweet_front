@@ -16,7 +16,7 @@ function Settings() {
   const [description, setDescription] = useState("");
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_URL}/users/${userName}`, {
+      .get(`${process.env.REACT_APP_URL}/users/${params.username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
