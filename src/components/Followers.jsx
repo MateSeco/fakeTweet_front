@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { reqPost, reqGet } from "../utils/reqCalls";
 
 function Followers() {
-  const token = useSelector((state) => state.userReducer.token);
+  const token = useSelector((state) => state.user.token);
   const params = useParams();
   const [resData, setResData] = useState({});
 

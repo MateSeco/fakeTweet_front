@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 
 export default function DeleteButton({tweet}) {
     const dispatch = useDispatch()
-    const token = useSelector(state => state.userReducer.token)
+    const token = useSelector(state => state.user.token)
 
     function handleDelete() {
         dispatch(tweetActions.deleteTweet(tweet._id))

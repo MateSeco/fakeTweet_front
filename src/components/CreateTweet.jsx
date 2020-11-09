@@ -8,7 +8,7 @@ import { reqPost, reqGet } from "../utils/reqCalls";
 
 function CreateTweet() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.userReducer.token);
+  const token = useSelector((state) => state.user.token);
   const tweets = useSelector((state) => state.tweets);
   const [content, setContent] = useState("");
 

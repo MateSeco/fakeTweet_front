@@ -8,7 +8,7 @@ const moment = require("moment");
 const axios = require("axios");
 
 function Tweet({ tweet, author }) {
-  const token = useSelector((state) => state.userReducer.token);
+  const token = useSelector((state) => state.user.token);
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");
 
   return (

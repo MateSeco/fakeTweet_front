@@ -9,7 +9,7 @@ import userActions from "../redux/Actions/userActions"
 
 function NavComponent() {
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.userReducer.userName);
+  const username = useSelector((state) => state.user.userName);
   return (
     <div>
       <Navbar bg="primary" variant="dark" className="twitter">

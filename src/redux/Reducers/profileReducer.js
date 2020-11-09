@@ -1,4 +1,4 @@
-function profileReducer(state = [], action) {
+function profileReducer(state = {}, action) {
   switch (action.type) {
     case "ADD_PROFILE":
       return action.payload;

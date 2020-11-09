@@ -8,13 +8,11 @@ import CreateTweet from "./CreateTweet";
 
 function Home() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.userReducer.token);
+  const token = useSelector((state) => state.user.token);
   const tweets = useSelector((state) => state.tweets);
 
   useEffect(() => {
-    /* reqGet("/home", token)
-      .then((res) => setResData({ ...resData, tweets: res.data.tweets }))
-      .catch((err) => console.log("err", err)); */
+    dispatch(actions.saveTweets([]))
     axios
       .get(`${process.env.REACT_APP_URL}/tweets`, {
         headers: { Authorization: `Bearer ${token}` },

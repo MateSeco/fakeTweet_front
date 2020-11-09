@@ -1,4 +1,4 @@
-function userReducer(state = [], action) {
+function userReducer(state = {}, action) {
   switch (action.type) {
     case "LOGGED":
       return {

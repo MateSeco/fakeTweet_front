@@ -5,7 +5,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 function Following() {
-  const token = useSelector((state) => state.userReducer.token);
+  const token = useSelector((state) => state.user.token);
   const params = useParams();
   const [resData, setResData] = useState({});
   useEffect(() => {

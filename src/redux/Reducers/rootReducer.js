@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import tweets from "./tweetReducer";
-import userReducer from "./userReducer";
+import user from "./userReducer";
 import profile from "./profileReducer";
 
-const rootReducer = combineReducers({ profile, tweets, userReducer });
+const rootReducer = combineReducers({ profile, tweets, user });
 
 export default rootReducer;

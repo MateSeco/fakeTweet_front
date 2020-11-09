@@ -12,16 +12,17 @@ import FollowButton from "./FollowButton"
 
 function Profile() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userReducer)
+  const user = useSelector(state => state.user)
   const tweets = useSelector((state) => state.tweets);
   const profile = useSelector((state) => state.profile);
-  const state = useSelector((state) => state);
-  const token = state.userReducer.token;
+  /* const state = useSelector((state) => state); */
+  const token = user.token;
   const params = useParams();
  
 
   useEffect(() => {
-    /* reqGet(`/${params.username}`, token) */
+    dispatch(tweetActions.saveTweets([]))
+    dispatch(profileActions.addProfile({}))
     axios
       .get(`${process.env.REACT_APP_URL}/users/${params.username}`, {
         headers: { Authorization: `Bearer ${token}` },

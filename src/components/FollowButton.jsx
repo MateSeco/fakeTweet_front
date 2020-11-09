@@ -7,8 +7,8 @@ import {Link} from "react-router-dom"
 
 export default function FollowButton({params}) { 
     const dispatch = useDispatch()
-    const token = useSelector((state) => state.userReducer.token);
-    const userId = useSelector((state) => state.userReducer.userId);
+    const token = useSelector((state) => state.user.token);
+    const userId = useSelector((state) => state.user.userId);
     const profile = useSelector((state) => state.profile);
     const [followButt, setFollowButt] = useState("")
     let following = profile.followers.includes(userId);
