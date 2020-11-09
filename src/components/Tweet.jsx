@@ -14,7 +14,7 @@ function Tweet({ tweet, author }) {
     <div className="container">
       <div className="media mt-4 mb-4">
         <img
-          src={author.image}
+          src={`${process.env.REACT_APP_URL}${author.image}`}
           className="mr-3 rounded-circle profileImageTweet"
           alt="..."
         />

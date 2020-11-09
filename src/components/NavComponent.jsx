@@ -21,7 +21,7 @@ function NavComponent() {
 
           <Nav className="ml-auto accountStyle">
             <NavDropdown
-              title="Account"
+              title={`${username}`}
               id="collasible-nav-dropdown"
               className="accountStyle"
             >
