@@ -9,10 +9,10 @@ function LikeButton({ tweet }) {
   const userId = useSelector((state) => state.user.userId);
   const tweets = useSelector((state) => state.tweets);
   const [likes, setLikes] = useState(tweet.likes.length);
-  const [pregunta, setPregunta] = useState();
+  const [likeButton, setLikeButton] = useState();
 
   useEffect(() => {
-    setPregunta(tweet.likes.includes(userId));
+    setLikeButton(tweet.likes.includes(userId));
   }, [likes]);
 
   function handleLike() {
@@ -34,7 +34,7 @@ function LikeButton({ tweet }) {
   return (
     <span>
       <button type="button" onClick={handleLike}>
-        {pregunta ? (
+        {likeButton ? (
           <i className="fas fa-heart heart"></i>
         ) : (
           <i className="far fa-heart heart"></i>
