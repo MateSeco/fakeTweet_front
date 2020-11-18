@@ -30,6 +30,7 @@ function LikeButton({ tweet }) {
       })
       .catch((err) => console.log("err", err));
   }
+  console.log("like");
 
   return (
     <span>

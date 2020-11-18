@@ -3,7 +3,6 @@ import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { reqPost, reqGet } from "../utils/reqCalls";
 
 function Followers() {
   const token = useSelector((state) => state.user.token);

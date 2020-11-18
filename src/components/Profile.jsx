@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Tweet from "./Tweet";
-import { reqGet } from "../utils/reqCalls";
 import tweetActions from "../redux/Actions/tweetActions";
 import profileActions from "../redux/Actions/profileActions";
 import CreateTweet from "./CreateTweet";

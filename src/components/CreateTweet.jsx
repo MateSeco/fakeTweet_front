@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import NavComponent from "./NavComponent";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import Tweet from "./Tweet";
 import actions from "../redux/Actions/tweetActions";
-import { reqPost, reqGet } from "../utils/reqCalls";
 
 function CreateTweet() {
   const dispatch = useDispatch();
@@ -21,10 +18,9 @@ function CreateTweet() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(tweets)
+        console.log(tweets);
 
-          dispatch(actions.addTweet(res.data));
-        
+        dispatch(actions.addTweet(res.data));
       });
   }
 

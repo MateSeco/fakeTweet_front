@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import tweetActions from "../redux/Actions/tweetActions";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 export default function DeleteButton({ tweet }) {
   const dispatch = useDispatch();
