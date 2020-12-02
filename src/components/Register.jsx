@@ -22,7 +22,7 @@ function Register() {
       email: email,
       password: password,
     };
-    axios.post("http://localhost:8000/users", user).then((res) => {
+    axios.post(`${process.env.REACT_APP_URL}/users`, user).then((res) => {
       dispatch(actions.logged(res.data));
       history.push(`/${userName}/settings`);
     });

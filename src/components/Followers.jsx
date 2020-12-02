@@ -14,7 +14,7 @@ function Followers() {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err)); */
     axios
-      .get(`http://localhost:8000/users/${params.username}/followers`, {
+      .get(`${process.env.REACT_APP_URL}/users/${params.username}/followers`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
