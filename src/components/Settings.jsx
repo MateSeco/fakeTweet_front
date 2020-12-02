@@ -63,7 +63,6 @@ function Settings() {
     }).then((res) => {
       dispatch(userActions.update(userName));
       console.log(res);
-
       history.push(`/${userName}`);
     });
   }
