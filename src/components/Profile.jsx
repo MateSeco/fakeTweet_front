@@ -43,7 +43,7 @@ function Profile() {
                 <div>
                   <img
                     className="profileImage rounded-circle media"
-                    src={`${process.env.REACT_APP_URL}${profile.image}`}
+                    src={`${process.env.REACT_APP_URL_S3}${profile.image}`}
                     alt=""
                   />
                 </div>
