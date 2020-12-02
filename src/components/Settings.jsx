@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import NavComponent from "./NavComponent";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import userActions from "../redux/Actions/userActions";
 
 function Settings() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.user.token);
   const history = useHistory();
   const params = useParams();
-  const [files, setFiles] = useState(null);
+  const [image, setImage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -29,7 +31,7 @@ function Settings() {
   }, []);
 
   function uploadFiles(event) {
-    setFiles(event.target.files[0]);
+    setImage(event.target.files[0]);
   }
 
   function axiosUpdate(e) {
@@ -48,14 +50,20 @@ function Settings() {
     formData.append("description", user.description);
 
     // Update the formData object
-    formData.append("image", files, files.name);
+    formData.append("image", image);
+
     axios({
       method: "put",
       url: `${process.env.REACT_APP_URL}/users`,
       data: formData,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
     }).then((res) => {
+      dispatch(userActions.update(userName));
       console.log(res);
+
       history.push(`/${userName}`);
     });
   }

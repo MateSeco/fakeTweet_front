@@ -12,6 +12,9 @@ function userReducer(state = {}, action) {
     case "LOGGED_OUT":
       return [];
 
+    case "UPDATE":
+      return { ...state, userName: action.payload };
+
     default:
       return state;
   }

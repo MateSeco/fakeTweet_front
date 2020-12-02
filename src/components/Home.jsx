@@ -12,11 +12,11 @@ function Home() {
   const tweets = useSelector((state) => state.tweets);
 
   useEffect(() => {
-    dispatch(actions.saveTweets([]))
+    dispatch(actions.saveTweets([]));
     axios
       .get(`${process.env.REACT_APP_URL}/tweets`, {
-        headers: { Authorization: `Bearer ${token}` }}
-      )
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => dispatch(actions.saveTweets(res.data.tweets)))
       .catch((err) => console.log("err", err));
   }, []);
@@ -24,17 +24,19 @@ function Home() {
   return (
     <div className="homeBody">
       <NavComponent />
-     {!tweets.firstName && <div className="container">
-        <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-          <CreateTweet />
-          
+      {!tweets.firstName && (
+        <div className="container">
+          <div className="shadow pr-5 pl-5 pb-5 feedContainer">
+            <CreateTweet />
+
             {tweets.map((tweet) => {
               return (
                 <Tweet key={tweet._id} tweet={tweet} author={tweet.author} />
               );
             })}
+          </div>
         </div>
-      </div>}
+      )}
     </div>
   );
 }

@@ -16,5 +16,12 @@ const loggedOut = () => {
   };
 };
 
-const actions = { logged, loggedOut };
+const update = (userName) => {
+  return {
+    type: "UPDATE",
+    payload: userName,
+  };
+};
+
+const actions = { logged, loggedOut, update };
 export default actions;
