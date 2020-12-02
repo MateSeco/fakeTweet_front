@@ -31,6 +31,7 @@ function Profile() {
       })
       .catch((err) => console.log(err));
   }, [params]);
+  /*comentario*/
 
   return (
     <div>
