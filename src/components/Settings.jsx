@@ -58,7 +58,7 @@ function Settings() {
       data: formData,
       headers: {
         Authorization: `Bearer ${token}`,
-        /* "Content-Type": "multipart/form-data", */
+ /*        "Content-Type": "multipart/form-data",  */
       },
     }).then((res) => {
       dispatch(userActions.update(userName));
