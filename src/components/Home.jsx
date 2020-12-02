@@ -14,8 +14,8 @@ function Home() {
   useEffect(() => {
     dispatch(actions.saveTweets([]))
     axios
-      .get(`${process.env.REACT_APP_URL}/tweets`,{params: {limit: 10}}, {
-        headers: { Authorization: `Bearer ${token}` },
+      .get(`${process.env.REACT_APP_URL}/tweets`, {
+        headers: { Authorization: `Bearer ${token}` }, {params: {limit: 10}},
       })
       .then((res) => dispatch(actions.saveTweets(res.data.tweets)))
       .catch((err) => console.log("err", err));
