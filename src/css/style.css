@@ -109,10 +109,14 @@ FORM DEL TWEET
 }
 
 .tweetInfo {
-  display: flex;
-  justify-content: space-evenly;
+  float: right;
 
   font-size: 0.8rem;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .tweetFont {

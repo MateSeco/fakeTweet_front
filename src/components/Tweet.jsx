@@ -20,7 +20,7 @@ function Tweet({ tweet, author }) {
             alt="..."
           />
           <div className="media-body tweetContainer ">
-            <h5 className="mt-0  ">
+            <h5 className="mt-0 ">
               <span>
                 <Link to={`/${author.userName}`} className="links">
                   {author.firstName} {author.lastName}
@@ -28,20 +28,21 @@ function Tweet({ tweet, author }) {
               </span>
               <span className="text-muted ml-1 usernameResponsiveLarge">
                 @{author.userName}
-              </span>
-            </h5>{" "}
+              </span>{" "}
+            </h5>
             <span className="text-muted usernameResponsiveSmall">
               @{author.userName}
             </span>
             <p className="tweetFont"> {tweet.content}</p>
-            {user.userId === author._id && (
-              <span>
-                <DeleteButton tweet={tweet} />
-              </span>
-            )}
-            <div className="tweetInfo">
-              <span> {dateFormated}</span>
+
+            <div className="tweetInfo mr-3">
               <div>
+                <span> {dateFormated}</span>
+                {user.userId === author._id && (
+                  <span className="ml-3">
+                    <DeleteButton tweet={tweet} />
+                  </span>
+                )}
                 <LikeButton tweet={tweet} />
               </div>
             </div>

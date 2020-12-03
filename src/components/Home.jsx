@@ -52,10 +52,11 @@ function Home() {
                 })}
               </div>
               <div className="col-md-4">
-                <div className="row">
+                <h5>Who to follow</h5>
+                <div className="row ">
                   {suggestions.map((suggestion) => {
                     return (
-                      <div className="col-6 col-md-12">
+                      <div className="col-6 col-md-12 mt-3">
                         <Suggestion
                           key={suggestion._id}
                           suggestion={suggestion}
