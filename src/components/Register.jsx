@@ -93,6 +93,7 @@ function Register() {
                 id="userName"
                 aria-describedby="helpId"
                 placeholder="Ingrese un username..."
+                maxLength="14"
                 required=""
                 data-parsley-required-message="Por favor ingrese una username"
               />

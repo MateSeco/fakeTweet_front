@@ -55,7 +55,7 @@ function Home() {
                 <div className="row">
                   {suggestions.map((suggestion) => {
                     return (
-                      <div className="col-4 col-md-12">
+                      <div className="col-6 col-md-12">
                         <Suggestion
                           key={suggestion._id}
                           suggestion={suggestion}

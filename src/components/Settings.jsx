@@ -58,7 +58,7 @@ function Settings() {
       data: formData,
       headers: {
         Authorization: `Bearer ${token}`,
- /*        "Content-Type": "multipart/form-data",  */
+        /*        "Content-Type": "multipart/form-data",  */
       },
     }).then((res) => {
       dispatch(userActions.update(userName));
@@ -122,6 +122,7 @@ function Settings() {
                           name="userName"
                           required=""
                           value={userName}
+                          maxLength="14"
                           data-parsley-required-message="Por favor ingrese un nombre de usuario"
                         />
                       </div>

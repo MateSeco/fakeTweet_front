@@ -29,7 +29,7 @@ export default function Suggestion({ suggestion }) {
               {suggestion.firstName} {suggestion.lastName}
             </h5>
           </Link>
-          <h5 className="card-subtitle mb-2 text-muted">
+          <h5 className="card-subtitle mb-2 text-muted cutUser">
             @{suggestion.userName}
           </h5>
         </div>
