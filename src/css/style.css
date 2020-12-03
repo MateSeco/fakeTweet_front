@@ -124,6 +124,22 @@ FORM DEL TWEET
   word-break: break-all;
 }
 
+@media (min-width: 492px) {
+  .usernameResponsiveSmall {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+    display: none;
+  }
+}
+
+@media (max-width: 491px) {
+  .usernameResponsiveLarge {
+    display: none;
+  }
+}
+
 /* 
 
 PERFIL
