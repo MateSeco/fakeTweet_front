@@ -110,7 +110,8 @@ FORM DEL TWEET
 
 .tweetInfo {
   display: flex;
-  float: right;
+  justify-content: space-evenly;
+
   font-size: 0.8rem;
 }
 

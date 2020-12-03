@@ -19,7 +19,7 @@ export default function DeleteButton({ tweet }) {
 
   return (
     <button type="button" onClick={handleDelete} className="delete">
-      <i className="far fa-trash-alt ml-2"></i>
+      <i className="far fa-trash-alt "></i>
     </button>
   );
 }

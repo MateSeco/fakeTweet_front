@@ -9,7 +9,7 @@ import Suggestion from "./Suggestion";
 
 function Home() {
   const dispatch = useDispatch();
-  const [suggestions, setSuggestions] = useState("")
+  const [suggestions, setSuggestions] = useState("");
   const token = useSelector((state) => state.user.token);
   const tweets = useSelector((state) => state.tweets);
 
@@ -30,7 +30,7 @@ function Home() {
       .catch((err) => console.log("err", err));
   }, []);
 
-  console.log("SUGERENCIAS: ",suggestions)
+  console.log("SUGERENCIAS: ", suggestions);
 
   return (
     <div className="homeBody">
@@ -38,26 +38,34 @@ function Home() {
       {!tweets.firstName && suggestions[0] && (
         <div className="container">
           <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-            
             <CreateTweet />
-            <div className="row">
-              <div className="col-8">
-              {tweets.map((tweet) => {
-              return (
-                <Tweet key={tweet._id} tweet={tweet} author={tweet.author} />
-              );
-            })}
+            <div className="row flex-wrap-reverse">
+              <div className="col-md-8">
+                {tweets.map((tweet) => {
+                  return (
+                    <Tweet
+                      key={tweet._id}
+                      tweet={tweet}
+                      author={tweet.author}
+                    />
+                  );
+                })}
               </div>
-              <div className="col-4">
-              {suggestions.map((suggestion) => {
-              return (
-                <Suggestion key={suggestion._id} suggestion={suggestion} />
-              );
-            })}
-                
+              <div className="col-md-4">
+                <div className="row">
+                  {suggestions.map((suggestion) => {
+                    return (
+                      <div className="col-4 col-md-12">
+                        <Suggestion
+                          key={suggestion._id}
+                          suggestion={suggestion}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-            
           </div>
         </div>
       )}

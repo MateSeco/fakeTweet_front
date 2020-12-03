@@ -20,7 +20,7 @@ function NavComponent() {
             </h1>
           </Navbar.Brand>
           {username && (
-            <Nav className="ml-auto accountStyle">
+            <Nav className="ml-auto accountStyle pr-0">
               <NavDropdown
                 title={`${username}`}
                 id="collasible-nav-dropdown"
