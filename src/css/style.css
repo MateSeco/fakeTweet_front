@@ -126,12 +126,15 @@ FORM DEL TWEET
 
 @media (min-width: 492px) {
   .usernameResponsiveSmall {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80%;
     display: none;
   }
+}
+.usernameResponsiveSmall {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 491px) {

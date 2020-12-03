@@ -11,40 +11,44 @@ function Tweet({ tweet, author }) {
   const dateFormated = moment(tweet.date).format("DD/MM/YYYY - HH:mm:ss");
 
   return (
-    <div className="media mt-4 mb-4">
-      <img
-        src={`${process.env.REACT_APP_URL_S3}${author.image}`}
-        className="mr-3 rounded-circle profileImageTweet"
-        alt="..."
-      />
-      <div className="media-body tweetContainer ">
-        <h5 className="mt-0  ">
-          <span>
-            <Link to={`/${author.userName}`} className="links">
-              {author.firstName} {author.lastName}
-            </Link>
-          </span>
-          <span className="text-muted ml-1 usernameResponsiveLarge">
-            @{author.userName}
-          </span>
-        </h5>
-        <span className="text-muted ml-1 usernameResponsiveSmall">
-          @{author.userName}
-        </span>
-        <p className="tweetFont"> {tweet.content}</p>
-        {user.userId === author._id && (
-          <span>
-            <DeleteButton tweet={tweet} />
-          </span>
-        )}
-        <div className="tweetInfo">
-          <span> {dateFormated}</span>
-          <div>
-            <LikeButton tweet={tweet} />
+    <>
+      {author && (
+        <div className="media mt-4 mb-4">
+          <img
+            src={`${process.env.REACT_APP_URL_S3}${author.image}`}
+            className="mr-3 rounded-circle profileImageTweet"
+            alt="..."
+          />
+          <div className="media-body tweetContainer ">
+            <h5 className="mt-0  ">
+              <span>
+                <Link to={`/${author.userName}`} className="links">
+                  {author.firstName} {author.lastName}
+                </Link>
+              </span>
+              <span className="text-muted ml-1 usernameResponsiveLarge">
+                @{author.userName}
+              </span>
+            </h5>{" "}
+            <span className="text-muted usernameResponsiveSmall">
+              @{author.userName}
+            </span>
+            <p className="tweetFont"> {tweet.content}</p>
+            {user.userId === author._id && (
+              <span>
+                <DeleteButton tweet={tweet} />
+              </span>
+            )}
+            <div className="tweetInfo">
+              <span> {dateFormated}</span>
+              <div>
+                <LikeButton tweet={tweet} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
