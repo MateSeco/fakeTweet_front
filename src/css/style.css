@@ -199,6 +199,7 @@ a {
 .welcomeLinkStyle {
   color: white;
   text-decoration: none;
+  width: 100%;
 }
 
 .welcomeLinkStyle:hover {

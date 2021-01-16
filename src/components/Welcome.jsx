@@ -21,22 +21,25 @@ function Welcome() {
             </span>
 
             <div className="container-login100-form-btn p-t-25">
-              <button type="button" className="login100-form-btn rounded-pill">
+              
                 <Link to={"register"} className="welcomeLinkStyle">
-                  Regístrate
+                <button type="button" className="login100-form-btn rounded-pill">
+                  Regístrate</button>
                 </Link>
-              </button>
+              
             </div>
 
             <div className="container-login100-form-btn p-t-25">
-              <button
+              
+                <Link to={"/login"} className="welcomeLinkStyle">
+                <button
                 type="button"
                 className="login100-form-btn rounded-pill mb-5"
               >
-                <Link to={"/login"} className="welcomeLinkStyle">
                   Iniciar sesión
+                  </button>
                 </Link>
-              </button>
+              
             </div>
           </form>
         </div>
