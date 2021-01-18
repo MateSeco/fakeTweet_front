@@ -6,10 +6,12 @@ import Tweet from "./Tweet";
 import actions from "../redux/Actions/tweetActions";
 import CreateTweet from "./CreateTweet";
 import Suggestion from "./Suggestion";
+import NavLateral from "./NavLateral"
 
 function Home() {
   const dispatch = useDispatch();
   const [suggestions, setSuggestions] = useState("");
+  const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.user.token);
   const tweets = useSelector((state) => state.tweets);
 
@@ -36,27 +38,56 @@ function Home() {
     <div className="homeBody">
       <NavComponent />
       {!tweets.firstName && suggestions[0] && (
-        <div className="container">
-          <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-            <CreateTweet />
-            <div className="row flex-wrap-reverse">
-              <div className="col-md-8">
-                {tweets.map((tweet) => {
-                  return (
-                    <Tweet
-                      key={tweet._id}
-                      tweet={tweet}
-                      author={tweet.author}
-                    />
-                  );
-                })}
+        <div className="row no-gutters flex-wrap-reverse">
+          <div className="col-lg-3">
+            <NavLateral user={user} />
+          </div>
+          <div className="col-lg-5">
+            <div className="feedContainer">
+              <CreateTweet />
+              <div className="d-flex flex-wrap-reverse">
+                <div className="">
+                  {tweets.map((tweet) => {
+                    return (
+                      <Tweet
+                        key={tweet._id}
+                        tweet={tweet}
+                        author={tweet.author}
+                      />
+                    );
+                  })}
+                </div>
+                <div className="d-lg-none">
+                  <div className="suggestions-container">
+                    <div className="suggestions-content">
+                      <h5>Who to follow</h5>
+                      <div className="row mb-3">
+                        {suggestions.map((suggestion) => {
+                          return (
+                            <div className="col-12 col-sm-6">
+                              <Suggestion
+                                key={suggestion._id}
+                                suggestion={suggestion}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="col-md-4">
+            </div>
+          </div>
+
+          <div className="col-12 col-lg-4">
+            <div className="d-none d-lg-block suggestions-container">
+              <div className="suggestions-content">
                 <h5>Who to follow</h5>
-                <div className="row ">
+                <div className="row mb-3">
                   {suggestions.map((suggestion) => {
                     return (
-                      <div className="col-6 col-md-12 mt-3">
+                      <div className="col-12">
                         <Suggestion
                           key={suggestion._id}
                           suggestion={suggestion}
@@ -69,6 +100,7 @@ function Home() {
             </div>
           </div>
         </div>
+
       )}
     </div>
   );

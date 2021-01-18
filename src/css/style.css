@@ -1,3 +1,7 @@
+:root {
+  --border-color: #dee2e6;
+}
+
 .body {
   font-family: "Poppins", sans-serif;
 }
@@ -66,9 +70,9 @@ nav .twitter {
 
 /* HOME */
 
-.homeBody {
+/* .homeBody {
   background-color: rgb(234, 242, 255);
-}
+} */
 
 /* 
 
@@ -77,15 +81,19 @@ FORM DEL TWEET
 */
 
 .redactTweet {
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
+  border-bottom: 0.1em solid var(--border-color); 
 }
 
 .feedContainer {
   min-height: 100vh;
+  border-left: 0.1rem solid var(--border-color);
+  border-right: 0.1rem solid var(--border-color);
   background-color: rgb(255, 255, 255);
 }
 
 .tweetButton {
+  margin-top: 1rem;
   margin-right: 0.5rem;
   display: flex;
   float: right;
@@ -108,9 +116,20 @@ FORM DEL TWEET
   margin-left: 1.5rem;
 }
 
-.tweetInfo {
-  float: right;
+.redactTweet textarea {
+  border:none;
+  border-bottom: 0.1em solid var(--border-color);
+  outline:0px solid transparent;
+  resize:none
+}
 
+textarea:focus {
+  outline:0px solid transparent;
+}
+
+.tweetInfo {
+  display: flex;
+  justify-content: space-between;
   font-size: 0.8rem;
 }
 
@@ -164,7 +183,7 @@ PERFIL
   object-fit: cover;
   padding: 0.25rem;
   background-color: white;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
   max-width: 100%;
 }
 
@@ -281,8 +300,7 @@ nav {
 }
 
 .form-group {
-  border: 1px solid rgb(228, 219, 202);
-  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .close-article {
@@ -402,4 +420,73 @@ nav {
 
 .btn-admin {
   width: 100%;
+}
+
+.tweet-container {
+  border-top: 0.1em solid var(--border-color);
+  
+}
+
+.tweet-container:hover {
+  border-top: 0.1em solid var(--border-color);
+  background-color: #eee;
+}
+
+.suggestions-container {
+  padding: 30px 30px 30px 30px;
+}
+
+.suggestions-content {
+  background-color: rgb(234, 242, 255);
+  border-radius: 10px;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
+.suggestion-div {
+  border-top: 0.1rem solid var(--border-color);
+}
+
+@media screen and (max-width: 576px) {
+  .suggestions-content {
+    max-width: 300px;
+  }
+}
+
+.nav-lateral {
+  position: fixed;
+  left:5%;
+  
+  }
+
+.nav-lateral-content {
+  margin-top: 30px;
+}
+
+.nav-lateral-content ul {
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+.nav-lateral-elem{
+  line-height: 1rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color:#212529;
+  padding:15px;
+}
+
+.nav-lateral-elem:hover{
+  background-color: #eee;
+  border-radius: 15px;
+}
+
+.fa-dove {
+  color:#007bff;
+  padding:15px
+}
+
+.fa-dove:hover {
+  background-color: #eee;
+  border-radius: 50%;
 }

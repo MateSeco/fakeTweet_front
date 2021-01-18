@@ -7,6 +7,7 @@ function userReducer(state = {}, action) {
         userName: action.payload.userName,
         userEmail: action.payload.userEmail,
         userId: action.payload.userId,
+        image: action.payload.image
       };
 
     case "LOGGED_OUT":

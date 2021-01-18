@@ -7,7 +7,6 @@ import actions from "../redux/Actions/userActions";
 function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const params = useParams();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -34,7 +33,7 @@ function Register() {
         <div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
           <form
             className="login100-form validate-form center"
-            data-parsley-validate=""
+            
             onSubmit={(e) => axiosRegister(e)}
           >
             <span className="login100-form-title p-b-55"> Registro </span>
@@ -52,7 +51,7 @@ function Register() {
                 aria-describedby="helpId"
                 placeholder="Ingrese un nombre..."
                 required=""
-                data-parsley-required-message="Por favor ingrese un nombre"
+              
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -73,7 +72,7 @@ function Register() {
                 aria-describedby="helpId"
                 placeholder="Ingrese un apellido..."
                 required=""
-                data-parsley-required-message="Por favor ingrese una apellido"
+                
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -95,7 +94,6 @@ function Register() {
                 placeholder="Ingrese un username..."
                 maxLength="14"
                 required=""
-                data-parsley-required-message="Por favor ingrese una username"
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -116,9 +114,6 @@ function Register() {
                 aria-describedby="helpId"
                 placeholder="Ingrese un email..."
                 required=""
-                data-parsley-required-message="Por favor ingrese el email del autor"
-                data-parsley-pattern="^[a-zA-Z0-9_.]+[@][a-zA-Z_]+\.[a-zA-Z_]+\.?[a-zA-Z_]+\.?[a-zA-Z_]+\.?"
-                data-parsley-pattern-message="Por favor, ingrese un email de autor valido"
                 aria-describedby="helpId"
               />
               <span className="focus-input100"></span>
@@ -140,7 +135,6 @@ function Register() {
                 aria-describedby="helpId"
                 placeholder="Ingrese un password..."
                 required=""
-                data-parsley-required-message="Por favor ingrese una password"
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">

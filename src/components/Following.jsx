@@ -38,6 +38,7 @@ function Following() {
                     <div className="media mt-5 mb-5">
                       <img
                         src={`${process.env.REACT_APP_URL_S3}${followed.image}`}
+                        alt={`${followed.firstName} ${followed.lastName}`}
                         className="mr-3 rounded-circle profileImageTweet"
                       />
                       <div className="media-body">

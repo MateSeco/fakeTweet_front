@@ -77,7 +77,7 @@ function Settings() {
               <div className="">
                 <form
                   encType="multipart/form-data"
-                  data-parsley-validate=""
+  
                   onSubmit={(e) => axiosUpdate(e)}
                 >
                   <h2 className="text-center mb-5">Edit profile</h2>
@@ -91,7 +91,7 @@ function Settings() {
                         onChange={(e) => setFirstName(e.target.value)}
                         id="firstName"
                         required=""
-                        data-parsley-required-message="Por favor ingrese un nombre"
+
                         value={firstName}
                       />
                     </div>
@@ -105,7 +105,7 @@ function Settings() {
                         name="lastName"
                         required=""
                         value={lastName}
-                        data-parsley-required-message="Por favor ingrese un apellido"
+
                       />
                     </div>
                     <div className="col-sm-4 my-1">
@@ -123,7 +123,7 @@ function Settings() {
                           required=""
                           value={userName}
                           maxLength="14"
-                          data-parsley-required-message="Por favor ingrese un nombre de usuario"
+
                         />
                       </div>
                     </div>
@@ -138,7 +138,6 @@ function Settings() {
                       id="description"
                       rows="5"
                       placeholder="Ingrese una descripcion"
-                      data-parsley-required-message="Por favor ingrese una descripcion"
                       required=""
                       value={description}
                       aria-describedby="helpId"

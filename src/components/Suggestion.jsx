@@ -15,7 +15,7 @@ export default function Suggestion({ suggestion }) {
   return (
     <>
       {suggestion.firstName && (
-        <div>
+        <div className="suggestion-div py-2">
           <Link to={`/${suggestion.userName}`} className="links">
             <div>
               <img

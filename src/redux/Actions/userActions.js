@@ -6,6 +6,7 @@ const logged = (data) => {
       userName: data.userName,
       userEmail: data.userEmail,
       userId: data.userId,
+      image:data.image
     },
   };
 };

@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import actions from "../redux/Actions/userActions";
-import { reqPost } from "../utils/reqCalls";
 
 function Login() {
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ function Login() {
         <div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
           <form
             className="login100-form validate-form"
-            data-parsley-validate=""
             onSubmit={(e) => axiosLogin(e)}
           >
             <span className="login100-form-title p-b-55"> Login </span>
