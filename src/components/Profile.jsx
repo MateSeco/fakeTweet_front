@@ -54,7 +54,7 @@ function Profile() {
         <div className="row no-gutters flex-wrap-reverse">
 
           <div className="col-lg-3"><NavLateral user={user} /></div>
-          <div className="col-5">
+          <div className="col-lg-5">
             <div className="pb-5 feedContainer">
               <header>
                 <div className="card-body">

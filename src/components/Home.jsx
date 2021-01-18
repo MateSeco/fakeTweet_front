@@ -38,7 +38,7 @@ function Home() {
     <div className="homeBody">
       <NavComponent />
       {!tweets.firstName && suggestions[0] && (
-        <div className="row no-gutters flex-wrap-reverse">
+        <div className="row no-gutters flex-wrap-reverse" >
           <div className="col-lg-3">
             <NavLateral user={user} />
           </div>

@@ -34,7 +34,7 @@ export default function FollowButton({ params }) {
   return (
     <button
       onClick={() => handleFollow()}
-      className="tweetButton rounded-pill btn btn-primary "
+      className="tweetButton rounded-pill btn btn-primary m-0"
     >
       {followButt}
     </button>

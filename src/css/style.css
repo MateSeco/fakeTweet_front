@@ -119,13 +119,14 @@ FORM DEL TWEET
 .redactTweet textarea {
   border:none;
   border-bottom: 0.1em solid var(--border-color);
-  outline:0px solid transparent;
-  resize:none
+  resize:none;
+  box-shadow:none;
+  overflow: auto;
+  outline: none!important;
+  box-shadow: none!important;
+
 }
 
-textarea:focus {
-  outline:0px solid transparent;
-}
 
 .tweetInfo {
   display: flex;
@@ -481,12 +482,13 @@ nav {
   border-radius: 15px;
 }
 
-.fa-dove {
+
+.fa-dove, .fa-arrow-left{
   color:#007bff;
   padding:15px
 }
 
-.fa-dove:hover {
+.fa-dove:hover, .fa-arrow-left:hover{
   background-color: #eee;
   border-radius: 50%;
 }
