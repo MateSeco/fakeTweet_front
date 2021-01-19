@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Suggestion from "./Suggestion"
 
 export default function Suggestions() {
@@ -22,10 +22,8 @@ export default function Suggestions() {
             {suggestions[0] && <div className="row mb-3">
                 {suggestions.map((suggestion) => {
                     return (
-                        <div className="col-12 col-sm-6">
-                            <Suggestion
-                                key={suggestion._id}
-                                suggestion={suggestion}
+                        <div className="col-12 col-sm-6" key={suggestion._id}>
+                            <Suggestion suggestion={suggestion}
                             />
                         </div>
                     );

@@ -4,22 +4,16 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import NavLateral from "./NavLateral"
-import Suggestion from "./Suggestion";
+import Suggestions from "./Suggestions";
 
 function Followers() {
   const user = useSelector((state) => state.user);
+  const profile = useSelector((state) => state.profile);
   const token = useSelector((state) => state.user.token);
   const params = useParams();
-  const [suggestions, setSuggestions] = useState("");
   const [resData, setResData] = useState({});
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_URL}/users`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setSuggestions(res.data))
-      .catch((err) => console.log("err", err));
 
     axios
       .get(`${process.env.REACT_APP_URL}/users/${params.username}/followers`, {
@@ -31,7 +25,6 @@ function Followers() {
           followers: res.data.followers,
         });
       })
-      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -42,22 +35,22 @@ function Followers() {
         {resData.followers && (
 
           <div className="row no-gutters flex-wrap-reverse" >
-            <div className="col-lg-3">
+            <div className="d-none d-lg-block col-lg-3">
               <NavLateral user={user} />
             </div>
             <div className="col-lg-5">
               <div className="follow">
-                <Link to={`/${user.userName}`}><i class="fas fa-arrow-left fa-3x"></i></Link>
+                <Link to={`/${profile.userName}`}><i className="fas fa-arrow-left fa-3x"></i></Link>
                 <h2>Followers</h2>
-                <ul className="list-unstyled">
+                <ul className="list-unstyled px-3">
                   <hr />
                   {resData.followers.map((follower) => {
                     return (
-                      <div className="media mt-5 mb-5">
+                      <div className="media mt-5 mb-5" key={`${follower._id}`}>
                         <img
                           src={`${process.env.REACT_APP_URL_S3}${follower.image}`}
                           className="mr-3 rounded-circle profileImageTweet"
-                          alt="..."
+                          alt={`${follower._id}_picture`}
                         />
                         <div className="media-body">
                           <h5 className="mt-0">
@@ -65,6 +58,7 @@ function Followers() {
                               <Link
                                 to={`/${follower.userName}`}
                                 className="links"
+
                               >
                                 {" "}
                                 {follower.firstName} {follower.lastName}
@@ -86,18 +80,7 @@ function Followers() {
               <div className="d-none d-lg-block suggestions-container">
                 <div className="suggestions-content">
                   <h5>Who to follow</h5>
-                  {suggestions[0] && <div className="row mb-3">
-                    {suggestions.map((suggestion) => {
-                      return (
-                        <div className="col-12">
-                          <Suggestion
-                            key={suggestion._id}
-                            suggestion={suggestion}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>}
+                  <Suggestions />
                 </div>
               </div>
             </div>

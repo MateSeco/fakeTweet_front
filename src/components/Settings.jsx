@@ -174,7 +174,7 @@ function Settings() {
                           className="btn btn-primary rounded-pill p-2 tweetButton saveButton mt-sm-4"
                           href=""
                           type="submit"
-                          role="button"
+
                         >
                           Save
                         </button>

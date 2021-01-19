@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import actions from "../redux/Actions/userActions";
@@ -12,6 +12,7 @@ function Register() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   function axiosRegister(e) {
     e.preventDefault();
     const user = {
@@ -33,7 +34,7 @@ function Register() {
         <div className="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
           <form
             className="login100-form validate-form center"
-            
+
             onSubmit={(e) => axiosRegister(e)}
           >
             <span className="login100-form-title p-b-55"> Registro </span>
@@ -51,7 +52,7 @@ function Register() {
                 aria-describedby="helpId"
                 placeholder="Ingrese un nombre..."
                 required=""
-              
+
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -72,7 +73,7 @@ function Register() {
                 aria-describedby="helpId"
                 placeholder="Ingrese un apellido..."
                 required=""
-                
+
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -114,7 +115,6 @@ function Register() {
                 aria-describedby="helpId"
                 placeholder="Ingrese un email..."
                 required=""
-                aria-describedby="helpId"
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">

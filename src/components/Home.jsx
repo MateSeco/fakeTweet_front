@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import NavComponent from "./NavComponent";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";

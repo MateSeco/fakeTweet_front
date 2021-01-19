@@ -34,7 +34,7 @@ function CreateTweet() {
             <img type="image" src={`${process.env.REACT_APP_URL_S3}${user.image}`} alt={`${profile.userName}_picture`} className="mr-3 rounded-circle profileImageTweet" />
           </Link>
           <div className="media-body tweetContainer pr-3">
-            <label for="content"></label>
+            <label htmlFor="content"></label>
             <textarea
               className="form-control"
               id="content"
