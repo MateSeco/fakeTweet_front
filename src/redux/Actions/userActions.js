@@ -17,10 +17,12 @@ const loggedOut = () => {
   };
 };
 
-const update = (data) => {
+const update = (userName, image) => {
   return {
     type: "UPDATE",
-    payload: {userName:data.userName, image:data.image},
+    payload: {
+      userName, 
+      image},
   };
 };
 

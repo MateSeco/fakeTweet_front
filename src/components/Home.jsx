@@ -10,20 +10,12 @@ import NavLateral from "./NavLateral"
 
 function Home() {
   const dispatch = useDispatch();
-  const [suggestions, setSuggestions] = useState("");
   const user = useSelector((state) => state.user);
-  const token = useSelector((state) => state.user.token);
+  const token = user.token;
   const tweets = useSelector((state) => state.tweets);
 
   useEffect(() => {
     dispatch(actions.saveTweets([]));
-    axios
-      .get(`${process.env.REACT_APP_URL}/users`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setSuggestions(res.data))
-      .catch((err) => console.log("err", err));
-
     axios
       .get(`${process.env.REACT_APP_URL}/tweets`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -32,12 +24,10 @@ function Home() {
       .catch((err) => console.log("err", err));
   }, []);
 
-  console.log("SUGERENCIAS: ", suggestions);
-
   return (
     <div className="homeBody">
       <NavComponent />
-      {!tweets.firstName && suggestions[0] && (
+      {!tweets.firstName && (
         <div className="row no-gutters flex-wrap-reverse" >
           <div className="col-lg-3">
             <NavLateral user={user} />
@@ -73,15 +63,7 @@ function Home() {
             <div className="d-none d-lg-block suggestions-container">
               <div className="suggestions-content">
                 <h5>Who to follow</h5>
-                <div className="row mb-3">
-                  {suggestions.map((suggestion) => {
-                    return (
-                      <div className="col-12">
-                        <Suggestions />
-                      </div>
-                    );
-                  })}
-                </div>
+                <Suggestions />
               </div>
             </div>
           </div>

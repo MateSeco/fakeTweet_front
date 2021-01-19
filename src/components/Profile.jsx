@@ -13,22 +13,11 @@ import NavLateral from "./NavLateral"
 
 function Profile() {
   const dispatch = useDispatch();
-  const [suggestions, setSuggestions] = useState("");
   const user = useSelector((state) => state.user);
   const tweets = useSelector((state) => state.tweets);
   const profile = useSelector((state) => state.profile);
   const token = user.token;
   const params = useParams();
-
-  useEffect(() => {
-
-    axios
-      .get(`${process.env.REACT_APP_URL}/users`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setSuggestions(res.data))
-      .catch((err) => console.log("err", err));
-  }, []);
 
   useEffect(() => {
     dispatch(tweetActions.saveTweets([]));
@@ -44,7 +33,6 @@ function Profile() {
       })
       .catch((err) => console.log(err));
   }, [params]);
-  /*comentario*/
 
   return (
     <div className="">
@@ -61,7 +49,7 @@ function Profile() {
                     <img
                       className="profileImage rounded-circle media"
                       src={`${process.env.REACT_APP_URL_S3}${profile.image}`}
-                      alt=""
+                      alt={`${profile.userName}`}
                     />
                   </div>
                   <h3 className="card-title">
@@ -107,15 +95,9 @@ function Profile() {
             <div className="d-none d-lg-block suggestions-container">
               <div className="suggestions-content">
                 <h5>Who to follow</h5>
-                {suggestions[0] && <div className="row mb-3">
-                  {suggestions.map((suggestion) => {
-                    return (
-                      <div className="col-12">
-                        <Suggestions />
-                      </div>
-                    );
-                  })}
-                </div>}
+
+                <Suggestions />
+
               </div>
             </div>
           </div>

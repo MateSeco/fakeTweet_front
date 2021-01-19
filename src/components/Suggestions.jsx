@@ -18,17 +18,19 @@ export default function Suggestions() {
     }, []);
 
     return (
-        <div className="row mb-3">
-            {suggestions.map((suggestion) => {
-                return (
-                    <div className="col-12 col-sm-6">
-                        <Suggestion
-                            key={suggestion._id}
-                            suggestion={suggestion}
-                        />
-                    </div>
-                );
-            })}
-        </div>
+        <>
+            {suggestions[0] && <div className="row mb-3">
+                {suggestions.map((suggestion) => {
+                    return (
+                        <div className="col-12 col-sm-6">
+                            <Suggestion
+                                key={suggestion._id}
+                                suggestion={suggestion}
+                            />
+                        </div>
+                    );
+                })}
+            </div>}
+        </>
     )
 }

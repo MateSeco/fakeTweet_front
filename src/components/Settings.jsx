@@ -61,8 +61,8 @@ function Settings() {
         /*        "Content-Type": "multipart/form-data",  */
       },
     }).then((res) => {
-      dispatch(userActions.update(userName, image));
-      console.log(res);
+      dispatch(userActions.update(res.data.userName, res.data.image));
+      console.log("RESPUESTA", res);
       history.push(`/${userName}`);
     });
   }
