@@ -9,7 +9,7 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("nacho");
   const [password, setPassword] = useState("nacho");
-  
+
   async function axiosLogin(e) {
     e.preventDefault();
 
@@ -17,8 +17,8 @@ function Login() {
 
     /* const res = await reqPost("/login", user, null); */
     axios.post(`${process.env.REACT_APP_URL}/login`, user).then((res) => {
-    dispatch(actions.logged(res.data));
-    history.push("/home");
+      dispatch(actions.logged(res.data));
+      history.push("/home");
     });
   }
 
