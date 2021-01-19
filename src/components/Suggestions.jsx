@@ -15,7 +15,7 @@ export default function Suggestions() {
             })
             .then((res) => setSuggestions(res.data))
             .catch((err) => console.log("err", err));
-    }, []);
+    }, [token]);
 
     return (
         <>

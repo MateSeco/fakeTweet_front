@@ -25,7 +25,6 @@ function Following() {
           following: res.data.following,
         });
       })
-      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -46,7 +45,7 @@ function Following() {
                 <hr />
                 {resData.following.map((followed) => {
                   return (
-                    <div className="media mt-5 mb-5">
+                    <div className="media mt-5 mb-5" key={`${followed._id}`}>
                       <img
                         src={`${process.env.REACT_APP_URL_S3}${followed.image}`}
                         alt={`${followed.firstName} ${followed.lastName}`}

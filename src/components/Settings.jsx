@@ -22,7 +22,7 @@ function Settings() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("RES>DATA : ", res.data);
+
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
         setUserName(res.data.userName);
@@ -62,7 +62,7 @@ function Settings() {
       },
     }).then((res) => {
       dispatch(userActions.update(res.data.userName, res.data.image));
-      console.log("RESPUESTA", res);
+
       history.push(`/${userName}`);
     });
   }
@@ -83,7 +83,7 @@ function Settings() {
                   <h2 className="text-center mb-5">Edit profile</h2>
                   <div className="form-row align-items-center">
                     <div className="col-sm-4 my-1">
-                      <label className="sr-only" for="firstName"></label>
+                      <label className="sr-only" htmlFor="firstName"></label>
                       <input
                         type="text"
                         className="form-control"
@@ -96,7 +96,7 @@ function Settings() {
                       />
                     </div>
                     <div className="col-sm-4 my-1">
-                      <label className="sr-only" for="lastName"></label>
+                      <label className="sr-only" htmlFor="lastName"></label>
                       <input
                         type="text"
                         className="form-control"
@@ -109,7 +109,7 @@ function Settings() {
                       />
                     </div>
                     <div className="col-sm-4 my-1">
-                      <label className="sr-only" for="userName"></label>
+                      <label className="sr-only" htmlFor="userName"></label>
                       <div className="input-group">
                         <div className="input-group-prepend">
                           <div className="input-group-text">@</div>
@@ -130,7 +130,7 @@ function Settings() {
                   </div>
                   <div className="form-group">
                     <h4 className="pt-3 pb-2">
-                      <label for="description">Description</label>
+                      <label htmlFor="description">Description</label>
                     </h4>
                     <textarea
                       className="form-control mb-3"
@@ -148,7 +148,7 @@ function Settings() {
                     <div className="row">
                       <div className="col-sm-6">
                         <h4 className="pt-3 pb-2">
-                          <label for="imagen">Upload an image</label>
+                          <label htmlFor="imagen">Upload an image</label>
                         </h4>
                         <input
                           type="file"
@@ -162,7 +162,7 @@ function Settings() {
                         />
                         <small
                           id="fileHelpId"
-                          class="form-text text-muted mb-5"
+                          className="form-text text-muted mb-5"
                         >
                           Inserte un archivo JPG o PNG
                         </small>
