@@ -26,7 +26,7 @@ function NavComponent() {
                 id="collasible-nav-dropdown"
                 className="accountStyle"
               >
-                {/* <NavDropdown.Item as={Link} to={`/${username}`}>
+                <NavDropdown.Item as={Link} to={`/${username}`}>
                   Profile
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to={`/${username}/settings`}>
@@ -39,7 +39,7 @@ function NavComponent() {
                   to={`/`}
                 >
                   Logout
-                </NavDropdown.Item> */}
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           )}
