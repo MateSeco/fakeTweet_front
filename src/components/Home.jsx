@@ -5,7 +5,7 @@ import axios from "axios";
 import Tweet from "./Tweet";
 import actions from "../redux/Actions/tweetActions";
 import CreateTweet from "./CreateTweet";
-import Suggestion from "./Suggestion";
+import Suggestions from "./Suggestions";
 import NavLateral from "./NavLateral"
 
 function Home() {
@@ -61,18 +61,7 @@ function Home() {
                   <div className="suggestions-container">
                     <div className="suggestions-content">
                       <h5>Who to follow</h5>
-                      <div className="row mb-3">
-                        {suggestions.map((suggestion) => {
-                          return (
-                            <div className="col-12 col-sm-6">
-                              <Suggestion
-                                key={suggestion._id}
-                                suggestion={suggestion}
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
+                      <Suggestions />
                     </div>
                   </div>
                 </div>
@@ -88,10 +77,7 @@ function Home() {
                   {suggestions.map((suggestion) => {
                     return (
                       <div className="col-12">
-                        <Suggestion
-                          key={suggestion._id}
-                          suggestion={suggestion}
-                        />
+                        <Suggestions />
                       </div>
                     );
                   })}

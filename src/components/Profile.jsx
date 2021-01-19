@@ -8,7 +8,7 @@ import tweetActions from "../redux/Actions/tweetActions";
 import profileActions from "../redux/Actions/profileActions";
 import CreateTweet from "./CreateTweet";
 import FollowButton from "./FollowButton";
-import Suggestion from "./Suggestion";
+import Suggestions from "./Suggestions";
 import NavLateral from "./NavLateral"
 
 function Profile() {
@@ -17,7 +17,6 @@ function Profile() {
   const user = useSelector((state) => state.user);
   const tweets = useSelector((state) => state.tweets);
   const profile = useSelector((state) => state.profile);
-  /* const state = useSelector((state) => state); */
   const token = user.token;
   const params = useParams();
 
@@ -112,10 +111,7 @@ function Profile() {
                   {suggestions.map((suggestion) => {
                     return (
                       <div className="col-12">
-                        <Suggestion
-                          key={suggestion._id}
-                          suggestion={suggestion}
-                        />
+                        <Suggestions />
                       </div>
                     );
                   })}

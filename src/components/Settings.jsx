@@ -61,7 +61,7 @@ function Settings() {
         /*        "Content-Type": "multipart/form-data",  */
       },
     }).then((res) => {
-      dispatch(userActions.update(userName));
+      dispatch(userActions.update(userName, image));
       console.log(res);
       history.push(`/${userName}`);
     });
@@ -77,7 +77,7 @@ function Settings() {
               <div className="">
                 <form
                   encType="multipart/form-data"
-  
+
                   onSubmit={(e) => axiosUpdate(e)}
                 >
                   <h2 className="text-center mb-5">Edit profile</h2>

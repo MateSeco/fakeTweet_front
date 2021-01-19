@@ -14,7 +14,7 @@ function userReducer(state = {}, action) {
       return [];
 
     case "UPDATE":
-      return { ...state, userName: action.payload };
+      return { ...state, userName: action.payload.userName, image:action.payload.image };
 
     default:
       return state;
