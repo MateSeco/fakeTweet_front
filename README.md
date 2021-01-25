@@ -4,10 +4,11 @@ This project was developed as one the challenges proposed in a coding bootcamp a
 
 ## Technologies used
 We worked with:
-* Node.js
-* React
+
+<img src="/src/MERN-Stack.jpg" alt="MERN" width="100" padding-top="200px"/> - MERN Satck
 
 ### What we did
 
+Social Media App whith authorization
 
 
