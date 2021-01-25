@@ -20,7 +20,7 @@ We also used AWS S3 for Cloud Storage of the users' profile pictures.<br/>
 A social media application that might be insipred in a real life example :see_no_evil: :innocent:<br/>
 You can register or login if you already have an user. <br/>
 You can set your profile choosing an userName, giving a description of yourself and uploading a profile picture (if you don't want to, we'll give you a default one :wink:).
-You can publish your messages, delete them, follow who your friends, like their messages.
+You can publish your messages, delete them, follow your friends, like their messages.
 You will also have suggestions of users you can follow.
 
 ## Pending
