@@ -33,5 +33,6 @@ You will also have suggestions of users you can follow.
 
 ## Give it a try!
 
-The app has been deployed in Vercel, give it a try!.<br/>
+The app has been [deployed in Vercel](faketweetfront-git-nacho-estilos.mateseco.vercel.app
+), give it a try!.<br/>
 We are open to any constructive criticism! :relaxed:
