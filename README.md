@@ -33,5 +33,5 @@ You will also have suggestions of users you can follow.
 
 ## Give it a try!
 
-The app has been [deployed in Vercel](http://ejercicio-twitter-react-front.mateseco.vercel.app/), give it a try!.<br/>
+The app has been [deployed in Vercel](https://ejercicio-twitter-react-front.vercel.app/), give it a try!.<br/>
 We are open to any constructive criticism! :relaxed:
