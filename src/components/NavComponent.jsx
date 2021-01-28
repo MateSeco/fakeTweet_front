@@ -9,7 +9,7 @@ import userActions from "../redux/Actions/userActions";
 function NavComponent() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userName);
-
+  /*comment*/
   return (
     <div>
       <Navbar bg="primary" variant="dark" className="twitter">
@@ -21,7 +21,7 @@ function NavComponent() {
           </Navbar.Brand>
           {username && (
             <Nav className="ml-auto  pr-0">
-              <NavDropdown
+              <NavDropdown as="NavLink"
                 title={`${username}`}
                 id="collasible-nav-dropdown"
                 className="accountStyle"

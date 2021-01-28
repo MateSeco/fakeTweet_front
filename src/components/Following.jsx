@@ -3,11 +3,17 @@ import NavComponent from "./NavComponent";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import NavLateral from "./NavLateral"
+import Suggestions from "./Suggestions";
 
 function Following() {
+  const user = useSelector((state) => state.user);
+  const profile = useSelector((state) => state.profile);
   const token = useSelector((state) => state.user.token);
   const params = useParams();
   const [resData, setResData] = useState({});
+
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_URL}/users/${params.username}/following`, {
@@ -19,25 +25,30 @@ function Following() {
           following: res.data.following,
         });
       })
-      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   return (
-    <div className="homeBody">
+    <div className="">
       <NavComponent />
-      <div className="container">
+      <div className="">
         {resData.following && (
-          <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-            <div className="follow">
-              <h2>Following</h2>
-              <ul className="list-unstyled">
+
+          <div className="row no-gutters flex-wrap-reverse">
+            <div className="d-none d-lg-block col-lg-3"><NavLateral user={user} /></div>
+            <div className="col-lg-5"><div className="follow">
+              <span>
+                <Link to={`/${profile.userName}`}><i className="fas fa-arrow-left fa-3x"></i></Link>
+                <h2> Following</h2>
+              </span>
+              <ul className="list-unstyled px-3">
                 <hr />
                 {resData.following.map((followed) => {
                   return (
-                    <div className="media mt-5 mb-5">
+                    <div className="media mt-5 mb-5" key={`${followed._id}`}>
                       <img
                         src={`${process.env.REACT_APP_URL_S3}${followed.image}`}
+                        alt={`${followed.firstName} ${followed.lastName}`}
                         className="mr-3 rounded-circle profileImageTweet"
                       />
                       <div className="media-body">
@@ -60,11 +71,17 @@ function Following() {
                   );
                 })}
               </ul>
-            </div>
+            </div></div>
+            <div className="col-12 col-lg-4"><div className="d-none d-lg-block suggestions-container">
+              <div className="suggestions-content">
+                <h5>Who to follow</h5>
+                <Suggestions />
+              </div>
+            </div></div>
           </div>
+
         )}
       </div>
-      {/*  include('./partials/scripts.ejs'); */}
     </div>
   );
 }

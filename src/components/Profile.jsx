@@ -8,19 +8,21 @@ import tweetActions from "../redux/Actions/tweetActions";
 import profileActions from "../redux/Actions/profileActions";
 import CreateTweet from "./CreateTweet";
 import FollowButton from "./FollowButton";
+import Suggestions from "./Suggestions";
+import NavLateral from "./NavLateral"
 
 function Profile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const tweets = useSelector((state) => state.tweets);
   const profile = useSelector((state) => state.profile);
-  /* const state = useSelector((state) => state); */
   const token = user.token;
   const params = useParams();
 
   useEffect(() => {
     dispatch(tweetActions.saveTweets([]));
     dispatch(profileActions.addProfile({}));
+
     axios
       .get(`${process.env.REACT_APP_URL}/users/${params.username}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -31,63 +33,77 @@ function Profile() {
       })
       .catch((err) => console.log(err));
   }, [params]);
-  /*comentario*/
 
   return (
-    <div>
+    <div className="">
       <NavComponent />
-      <div className="container">
-        {profile.firstName && (
-          <div className="shadow pr-5 pl-5 pb-5 feedContainer">
-            <header>
-              <div className="card-body">
-                <div>
-                  <img
-                    className="profileImage rounded-circle media"
-                    src={`${process.env.REACT_APP_URL_S3}${profile.image}`}
-                    alt=""
-                  />
-                </div>
-                <h3 className="card-title">
-                  {" "}
-                  {profile.firstName} {profile.lastName}
-                </h3>
-                <h5 className="card-subtitle mb-2 text-muted">
-                  @{profile.userName}
-                </h5>
-                <p className="card-text tweetFont ">{profile.description}</p>
-                <div className="follows">
-                  <span>
-                    <Link
-                      to={`/${params.username}/followers`}
-                      className="links"
-                    >
-                      {profile.followers.length} Followers
-                    </Link>
-                  </span>
-                  <span className="ml-4">
-                    <Link
-                      to={`/${params.username}/following`}
-                      className="links"
-                    >
-                      {profile.following.length} Following
-                    </Link>
-                  </span>
-                  {user.userId && profile._id !== user.userId && (
-                    <FollowButton params={params} />
-                  )}
-                </div>
+      {profile.firstName && (
+        <div className="row no-gutters flex-wrap-reverse">
 
-                {profile._id === user.userId && <CreateTweet />}
-              </div>
-            </header>
+          <div className="col-lg-3"><NavLateral user={user} /></div>
+          <div className="col-lg-5">
+            <div className="pb-5 feedContainer">
+              <header>
+                <div className="card-body">
+                  <div>
+                    <img
+                      className="profileImage rounded-circle media"
+                      src={`${process.env.REACT_APP_URL_S3}${profile.image}`}
+                      alt={`${profile.userName}`}
+                    />
+                  </div>
+                  <h3 className="card-title">
+                    {" "}
+                    {profile.firstName} {profile.lastName}
+                  </h3>
+                  <h5 className="card-subtitle mb-2 text-muted">
+                    @{profile.userName}
+                  </h5>
+                  <p className="card-text tweetFont ">{profile.description}</p>
+                  <div className="follows">
+                    <span>
+                      <Link
+                        to={`/${params.username}/followers`}
+                        className="links"
+                      >
+                        {profile.followers.length} Followers
+                    </Link>
+                    </span>
+                    <span className="ml-4">
+                      <Link
+                        to={`/${params.username}/following`}
+                        className="links"
+                      >
+                        {profile.following.length} Following
+                    </Link>
+                    </span>
+                    {user.userId && profile._id !== user.userId && (
+                      <FollowButton params={params} />
+                    )}
+                  </div>
 
-            {tweets.map((tweet) => {
-              return <Tweet key={tweet._id} tweet={tweet} author={profile} />;
-            })}
+                  {profile._id === user.userId && <CreateTweet />}
+                </div>
+              </header>
+
+              {tweets.map((tweet) => {
+                return <Tweet key={tweet._id} tweet={tweet} author={profile} />;
+              })}
+            </div>
           </div>
-        )}
-      </div>
+          <div className="col-12 col-lg-4">
+            <div className="d-none d-lg-block suggestions-container">
+              <div className="suggestions-content">
+                <h5>Who to follow</h5>
+
+                <Suggestions />
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      )}
     </div>
   );
 }

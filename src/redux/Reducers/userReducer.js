@@ -7,13 +7,14 @@ function userReducer(state = {}, action) {
         userName: action.payload.userName,
         userEmail: action.payload.userEmail,
         userId: action.payload.userId,
+        image: action.payload.image
       };
 
     case "LOGGED_OUT":
       return [];
 
     case "UPDATE":
-      return { ...state, userName: action.payload };
+      return { ...state, userName: action.payload.userName, image:action.payload.image };
 
     default:
       return state;

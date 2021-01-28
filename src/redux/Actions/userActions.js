@@ -6,6 +6,7 @@ const logged = (data) => {
       userName: data.userName,
       userEmail: data.userEmail,
       userId: data.userId,
+      image:data.image
     },
   };
 };
@@ -16,10 +17,12 @@ const loggedOut = () => {
   };
 };
 
-const update = (userName) => {
+const update = (userName, image) => {
   return {
     type: "UPDATE",
-    payload: userName,
+    payload: {
+      userName, 
+      image},
   };
 };
 

@@ -22,7 +22,7 @@ function Settings() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("RES>DATA : ", res.data);
+
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
         setUserName(res.data.userName);
@@ -61,8 +61,8 @@ function Settings() {
         /*        "Content-Type": "multipart/form-data",  */
       },
     }).then((res) => {
-      dispatch(userActions.update(userName));
-      console.log(res);
+      dispatch(userActions.update(res.data.userName, res.data.image));
+
       history.push(`/${userName}`);
     });
   }
@@ -77,13 +77,13 @@ function Settings() {
               <div className="">
                 <form
                   encType="multipart/form-data"
-                  data-parsley-validate=""
+
                   onSubmit={(e) => axiosUpdate(e)}
                 >
                   <h2 className="text-center mb-5">Edit profile</h2>
                   <div className="form-row align-items-center">
                     <div className="col-sm-4 my-1">
-                      <label className="sr-only" for="firstName"></label>
+                      <label className="sr-only" htmlFor="firstName"></label>
                       <input
                         type="text"
                         className="form-control"
@@ -91,12 +91,12 @@ function Settings() {
                         onChange={(e) => setFirstName(e.target.value)}
                         id="firstName"
                         required=""
-                        data-parsley-required-message="Por favor ingrese un nombre"
+
                         value={firstName}
                       />
                     </div>
                     <div className="col-sm-4 my-1">
-                      <label className="sr-only" for="lastName"></label>
+                      <label className="sr-only" htmlFor="lastName"></label>
                       <input
                         type="text"
                         className="form-control"
@@ -105,11 +105,11 @@ function Settings() {
                         name="lastName"
                         required=""
                         value={lastName}
-                        data-parsley-required-message="Por favor ingrese un apellido"
+
                       />
                     </div>
                     <div className="col-sm-4 my-1">
-                      <label className="sr-only" for="userName"></label>
+                      <label className="sr-only" htmlFor="userName"></label>
                       <div className="input-group">
                         <div className="input-group-prepend">
                           <div className="input-group-text">@</div>
@@ -123,14 +123,14 @@ function Settings() {
                           required=""
                           value={userName}
                           maxLength="14"
-                          data-parsley-required-message="Por favor ingrese un nombre de usuario"
+
                         />
                       </div>
                     </div>
                   </div>
                   <div className="form-group">
                     <h4 className="pt-3 pb-2">
-                      <label for="description">Description</label>
+                      <label htmlFor="description">Description</label>
                     </h4>
                     <textarea
                       className="form-control mb-3"
@@ -138,7 +138,6 @@ function Settings() {
                       id="description"
                       rows="5"
                       placeholder="Ingrese una descripcion"
-                      data-parsley-required-message="Por favor ingrese una descripcion"
                       required=""
                       value={description}
                       aria-describedby="helpId"
@@ -149,7 +148,7 @@ function Settings() {
                     <div className="row">
                       <div className="col-sm-6">
                         <h4 className="pt-3 pb-2">
-                          <label for="imagen">Upload an image</label>
+                          <label htmlFor="imagen">Upload an image</label>
                         </h4>
                         <input
                           type="file"
@@ -163,7 +162,7 @@ function Settings() {
                         />
                         <small
                           id="fileHelpId"
-                          class="form-text text-muted mb-5"
+                          className="form-text text-muted mb-5"
                         >
                           Inserte un archivo JPG o PNG
                         </small>
@@ -175,7 +174,7 @@ function Settings() {
                           className="btn btn-primary rounded-pill p-2 tweetButton saveButton mt-sm-4"
                           href=""
                           type="submit"
-                          role="button"
+
                         >
                           Save
                         </button>

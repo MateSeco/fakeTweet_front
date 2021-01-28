@@ -13,7 +13,7 @@ function Tweet({ tweet, author }) {
   return (
     <>
       {author && (
-        <div className="media mt-4 mb-4">
+        <div className="media px-3 py-4 tweet-container">
           <img
             src={`${process.env.REACT_APP_URL_S3}${author.image}`}
             className="mr-3 rounded-circle profileImageTweet"
@@ -36,15 +36,14 @@ function Tweet({ tweet, author }) {
             <p className="tweetFont"> {tweet.content}</p>
 
             <div className="tweetInfo mr-3">
-              <div>
-                <span> {dateFormated}</span>
+              <small> {dateFormated}</small>
+              <div className="tweetInteraction">
                 {user.userId === author._id && (
                   <span className="ml-3">
                     <DeleteButton tweet={tweet} />
                   </span>
                 )}
-                <LikeButton tweet={tweet} />
-              </div>
+                <span><LikeButton tweet={tweet} /></span> </div>
             </div>
           </div>
         </div>

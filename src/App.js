@@ -1,5 +1,4 @@
 import "./css/main.css";
-import "./css/parsley.css";
 import "./css/style.css";
 import "./css/util.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";

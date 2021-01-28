@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
-import NavComponent from "./NavComponent";
-import { Link, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-import Tweet from "./Tweet";
-import tweetActions from "../redux/Actions/tweetActions";
-import profileActions from "../redux/Actions/profileActions";
-import CreateTweet from "./CreateTweet";
-import FollowButton from "./FollowButton";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Suggestion({ suggestion }) {
-  const user = useSelector((state) => state.user);
 
   return (
     <>
       {suggestion.firstName && (
-        <div>
+        <div className="suggestion-div py-2">
           <Link to={`/${suggestion.userName}`} className="links">
             <div>
               <img
