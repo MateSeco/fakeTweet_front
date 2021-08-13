@@ -50,13 +50,10 @@ function CreateTweet() {
               className="btn btn-primary rounded-pill tweetButton"
             >
               Tweet
-      </button>
+            </button>
           </div>
-
         </div>
-
       </div>
-
     </form >
   );
 }
