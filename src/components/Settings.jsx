@@ -137,7 +137,7 @@ function Settings() {
                       name="description"
                       id="description"
                       rows="5"
-                      placeholder="Ingrese una descripcion"
+                      placeholder="Fill with a description"
                       required=""
                       value={description}
                       aria-describedby="helpId"
@@ -157,14 +157,14 @@ function Settings() {
                           className="form-control-file"
                           name="image"
                           id="image"
-                          placeholder=""
+                          placeholder="Choose file"
                           aria-describedby="fileHelpId"
                         />
                         <small
                           id="fileHelpId"
                           className="form-text text-muted mb-5"
                         >
-                          Inserte un archivo JPG o PNG
+                          Insert JPG or PNG file
                         </small>
                       </div>
                       <div className="col-sm-6">

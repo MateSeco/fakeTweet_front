@@ -11,35 +11,35 @@ function Welcome() {
             method="POST"
           >
             <span className="welcome100-form-title">
-              Bienvenido a
+              Welcome to
               <p className="twitter">
                 <span className="fakeTwitter-welcome">fake</span> Twitter
               </p>
             </span>
             <span className="welcome100-form-title pt-5 pb-3">
-              Únete hoy mismo.
+              Join today.
             </span>
 
             <div className="container-login100-form-btn p-t-25">
-              
-                <Link to={"register"} className="welcomeLinkStyle">
+
+              <Link to={"register"} className="welcomeLinkStyle">
                 <button type="button" className="login100-form-btn rounded-pill">
-                  Regístrate</button>
-                </Link>
-              
+                  Register</button>
+              </Link>
+
             </div>
 
             <div className="container-login100-form-btn p-t-25">
-              
-                <Link to={"/login"} className="welcomeLinkStyle">
+
+              <Link to={"/login"} className="welcomeLinkStyle">
                 <button
-                type="button"
-                className="login100-form-btn rounded-pill mb-5"
-              >
-                  Iniciar sesión
-                  </button>
-                </Link>
-              
+                  type="button"
+                  className="login100-form-btn rounded-pill mb-5"
+                >
+                  Login
+                </button>
+              </Link>
+
             </div>
           </form>
         </div>

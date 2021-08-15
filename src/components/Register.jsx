@@ -37,7 +37,7 @@ function Register() {
 
             onSubmit={(e) => axiosRegister(e)}
           >
-            <span className="login100-form-title p-b-55"> Registro </span>
+            <span className="login100-form-title p-b-55"> SIGN UP </span>
 
             <div
               className="wrap-input100 validate-input m-b-16"
@@ -50,7 +50,7 @@ function Register() {
                 onChange={(e) => setFirstName(e.target.value)}
                 id="firstName"
                 aria-describedby="helpId"
-                placeholder="Ingrese un nombre..."
+                placeholder="First name"
                 required=""
 
               />
@@ -62,7 +62,7 @@ function Register() {
 
             <div
               className="wrap-input100 validate-input m-b-16"
-              data-validate="apellido is required"
+              data-validate="Last name is required"
             >
               <input
                 className="input100 rounded-pill"
@@ -71,7 +71,7 @@ function Register() {
                 onChange={(e) => setLastName(e.target.value)}
                 id="lastName"
                 aria-describedby="helpId"
-                placeholder="Ingrese un apellido..."
+                placeholder="Last name"
                 required=""
 
               />
@@ -92,7 +92,7 @@ function Register() {
                 onChange={(e) => setUserName(e.target.value)}
                 id="userName"
                 aria-describedby="helpId"
-                placeholder="Ingrese un username..."
+                placeholder="Choose your username"
                 maxLength="14"
                 required=""
               />
@@ -113,7 +113,7 @@ function Register() {
                 id="email"
                 onChange={(e) => setEmail(e.target.value)}
                 aria-describedby="helpId"
-                placeholder="Ingrese un email..."
+                placeholder="Email"
                 required=""
               />
               <span className="focus-input100"></span>
@@ -133,7 +133,7 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 aria-describedby="helpId"
-                placeholder="Ingrese un password..."
+                placeholder="Chhose your password"
                 required=""
               />
               <span className="focus-input100"></span>
@@ -149,15 +149,15 @@ function Register() {
 
             <div className="container-login100-form-btn p-t-25">
               <button type="submit" className="login100-form-btn rounded-pill">
-                Registrarse
+                Sign up
               </button>
             </div>
 
             <div className="text-center w-full p-t-20">
-              <span className="txt1"> ¿Ya tienes una cuenta? </span>
+              <span className="txt1"> Already have an account? </span>
 
               <Link to={"/login"} className="txt1 bo1 hov1">
-                Inicia sesion
+                Login
               </Link>
             </div>
           </form>

@@ -42,7 +42,7 @@ function Login() {
                 name="email"
                 onChange={(e) => setEmail(e.target.value)}
                 id="email"
-                placeholder="Ingrese su email o usuario"
+                placeholder="email or username"
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -70,15 +70,15 @@ function Login() {
 
             <div className="container-login100-form-btn p-t-25">
               <button type="submit" className="login100-form-btn rounded-pill">
-                Inicia sesion
+                Login
               </button>
             </div>
 
             <div className="text-center w-full p-t-115">
-              <span className="txt1"> ¿No estas registrado? </span>
+              <span className="txt1"> Not registered? </span>
 
               <Link to={"/register"} className="txt1 bo1 hov1">
-                Registrate ahora{" "}
+                Join now{" "}
               </Link>
             </div>
           </form>
